@@ -92,7 +92,8 @@ class DataCube_Query
             $entry ['__cv_hashedUri'] = md5($mainKey);
 
             // Nice label using TitleHelper
-            $entry ['__cv_niceLabel'] = $mainKey ;// $titleHelper->getTitle($mainKey);
+	    // $entry ['__cv_niceLabel'] = $mainKey ;// $titleHelper->getTitle($mainKey);
+            $entry ['__cv_niceLabel'] = $titleHelper->getTitle($mainKey);
 
             // Comment
             if (true === isset($entry['http://www.w3.org/2000/01/rdf-schema#comment'])

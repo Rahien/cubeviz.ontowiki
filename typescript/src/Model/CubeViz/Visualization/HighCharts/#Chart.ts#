@@ -1,35 +1,9 @@
-function chartClickHandler() {
-    var chart = this.series.chart;
-    var cv_chart = this.cv_chart;
-
-    cv_chart.chartConfig.observationRoot = this.xAxisElement.self.__cv_uri;
-    cv_chart.chartConfig.seriesRoot = this.seriesElement.self.__cv_uri;
-    while(chart.series[0]){
-	chart.series[0].remove(false);
-    }
-
-    cv_chart.updateConfiguration();
-    
-    for(var series in cv_chart.chartConfig.series){
-	chart.addSeries(cv_chart.chartConfig.series[series],false);
-    }
-
-    chart.xAxis[0].setCategories(cv_chart.chartConfig.xAxis.categories);
-    
-    chart.redraw();
-};
-
 /**
- * A grouped bar chart for rendering elements in groups
+ * 
  */
-class CubeViz_Visualization_HighCharts_GBar extends CubeViz_Visualization_HighCharts_Chart 
+class CubeViz_Visualization_HighCharts_Chart 
 {
     public chartConfig:any;
-    //* predicate used for drilling
-    public drillingPredicate:string;
-
-    //* we are going to hack this class a bit
-    public originalConfiguration:any;
     
     /**
      * Initialize a chart instance.
@@ -51,31 +25,6 @@ class CubeViz_Visualization_HighCharts_GBar extends CubeViz_Visualization_HighCh
         selectedAttributeUri:string) 
         : CubeViz_Visualization_HighCharts_Chart 
     {  
-	this.originalConfiguration = {
-	    chartConfig:chartConfig, retrievedObservations:retrievedObservations, 
-            selectedComponentDimensions:selectedComponentDimensions, multipleDimensions:multipleDimensions,
-            oneElementDimensions:oneElementDimensions, selectedMeasureUri:selectedMeasureUri,
-            selectedAttributeUri:selectedAttributeUri
-	};
-
-	this.drillingPredicate="http://www.w3.org/2004/02/skos/core#broader";
-	
-	this.updateConfiguration();
-
-        return this;
-    };
-
-    public updateConfiguration () 
-        : CubeViz_Visualization_HighCharts_Chart 
-    {  
-	var chartConfig:any = this.originalConfiguration.chartConfig;
-	var retrievedObservations:any = this.originalConfiguration.retrievedObservations; 
-        var selectedComponentDimensions:any = this.originalConfiguration.selectedComponentDimensions;
-	var multipleDimensions:any = this.originalConfiguration.multipleDimensions;
-	var oneElementDimensions:any = this.originalConfiguration.oneElementDimensions;
-	var selectedMeasureUri:any = this.originalConfiguration.selectedMeasureUri;
-	var selectedAttributeUri:any = this.originalConfiguration.selectedAttributeUri;
-
         var forXAxis = null,
             forSeries = null,
             observation = new DataCube_Observation (),
@@ -160,7 +109,99 @@ class CubeViz_Visualization_HighCharts_GBar extends CubeViz_Visualization_HighCh
          * two multiple dimensions
          */
         if (false === _.str.isBlank(forXAxis) && false === _.str.isBlank(forSeries)) {
-	    self.handleTwoDimensions(observation, forXAxis, selectedComponentDimensions, forSeries, selectedAttributeUri, selectedMeasureUri);
+            var xAxisElements:any = observation
+                .getAxesElements(forXAxis);
+                
+            // put labels for properties to the axis
+            _.each(xAxisElements, function(xAxisElement){
+                self.chartConfig.xAxis.categories.push(xAxisElement.self.__cv_niceLabel);
+            });
+            
+            /**
+             * collect URI's of selected dimensions
+             */
+            var selectedDimensionPropertyUris:string[] = [];
+            
+            _.each(selectedComponentDimensions, function(dimension){
+                selectedDimensionPropertyUris.push(dimension["http://purl.org/linked-data/cube#dimension"]); 
+            });
+            
+            /**
+             * now we take care about the series
+             */
+            var obj:any = {},
+                seriesElements:any = observation.getAxesElements(forSeries),
+                uriCombination:string = "",
+                usedDimensionElementCombinations:any = {};
+                
+            self.chartConfig.series = [];
+
+            _.each(seriesElements, function(seriesElement){
+                
+                // this represents one item of the series array (of highcharts)
+                obj = { 
+                    color: CubeViz_Visualization_Controller.getColor(
+                        seriesElement.self.__cv_uri
+                    ),
+                    data: [],
+                    name: seriesElement.self.__cv_niceLabel
+                };
+                
+                // go through all observations associated with this seriesElement
+                // and add their values (measure) if set
+                _.each(seriesElement.observations, function(seriesObservation){
+                    
+                    // check if the current observation has to be ignored
+                    // it will ignored, 
+                    //      if attribute uri is set, but the observation
+                    //      has no value of it
+                    // and
+                    //      if the predicate which is labeled with DataCube's 
+                    //      attribute is not equal to the given selected attribute uri
+                    if ((   false === _.isNull(selectedAttributeUri)
+                            && 
+                            ( true === _.isNull(seriesObservation [selectedAttributeUri])
+                              || true === _.isUndefined(seriesObservation [selectedAttributeUri])))
+                        && 
+                            selectedAttributeUri !== seriesObservation ["http://purl.org/linked-data/cube#attribute"]) {
+                        // TODO implement a way to handle ignored observations
+                        return;
+                    }
+                    
+                    /**
+                     * check if the combination of dimension elements in this series 
+                     * element was already used.
+                     */
+                    uriCombination = "";
+                    
+                    _.each(selectedDimensionPropertyUris, function(dimensionUri){
+                        uriCombination += seriesObservation[dimensionUri];
+                    });
+                    
+                    if (true === _.isUndefined(usedDimensionElementCombinations[uriCombination])) {
+                        usedDimensionElementCombinations[uriCombination] = true;
+                    } else {
+                        // if this combination is already in use, stop execution immediatly
+                        return;
+                    }                
+                    
+                    if(false === _.isUndefined(seriesObservation[selectedMeasureUri])) {
+                        obj.data.push (parseFloat(
+                            seriesObservation[selectedMeasureUri]
+                        ));
+                    } else {
+                        obj.data.push (null);
+                    }
+                });
+                
+                // if nothing was added, ignore obj
+                if (0 == _.size(obj.data)) {
+                    // TODO handle ignore obj's
+                } else {
+                    self.chartConfig.series.push (obj);
+                }
+            });
+        
         // You have one or zero multiple dimensions
         } else if (false === _.str.isBlank(forXAxis) || false === _.str.isBlank(forSeries)) {
 
@@ -264,130 +305,15 @@ class CubeViz_Visualization_HighCharts_GBar extends CubeViz_Visualization_HighCh
                 });
             }
         }
-
-	self.chartConfig.plotOptions[self.chartConfig.chart.type] = { point : { events : {click : chartClickHandler}}};
         
         return this;
-    };
-
-    //* whether or not the given element should be hidden
-    public shouldHideElement(element:any, seriesElement:bool) :bool {
-	var reference = null;
-	if(seriesElement){
-	    reference = this.chartConfig.seriesRoot
-	}else{
-	    reference = this.chartConfig.observationRoot
-	}
-
-	var drillValue = element.self[this.drillingPredicate];
-	if(!drillValue || typeof drillValue == "string"){
-	    return reference != drillValue;
-	}else{
-	    for(var prop in drillValue){
-		if(reference == drillValue[prop]){
-		    return false;
-		}
-	    }
-	    return true;
-	}
-    };
-
-    public handleTwoDimensions(observation:any, forXAxis:any, selectedComponentDimensions:any, forSeries:any, selectedAttributeUri:any, selectedMeasureUri:any) : void {
-        var xAxisElements:any = observation.getAxesElements(forXAxis);
-	var self:any = this;
-        
-        // put labels for properties to the axis
-        _.each(xAxisElements, function(xAxisElement){
-	    if(self.shouldHideElement(xAxisElement,false)){
-		return;
-	    }
-            self.chartConfig.xAxis.categories.push(xAxisElement.self.__cv_niceLabel);
-        });
-        
-        /**
-         * collect URI's of selected dimensions
-         */
-        var selectedDimensionPropertyUris:string[] = [];
-        
-        _.each(selectedComponentDimensions, function(dimension){
-            selectedDimensionPropertyUris.push(dimension["http://purl.org/linked-data/cube#dimension"]); 
-        });
-        
-        /**
-         * now we take care about the series
-         */
-        var obj:any = {},
-        seriesElements:any = observation.getAxesElements(forSeries),
-        uriCombination:string = "",
-        usedDimensionElementCombinations:any = {};
-        
-        self.chartConfig.series = [];
-
-        _.each(seriesElements, function(seriesElement){
-            // this represents one item of the series array (of highcharts)
-            obj = { 
-                color: CubeViz_Visualization_Controller.getColor(
-                    seriesElement.self.__cv_uri
-                ),
-                data: [],
-                name: seriesElement.self.__cv_niceLabel
-            };
-
-	    if(self.shouldHideElement(seriesElement,true)){
-		return;
-	    }
-            
-            // go through all observations associated with this seriesElement
-            // and add their values (measure) if set
-            _.each(seriesElement.observations, function(seriesObservation){
-                
-                // check if the current observation has to be ignored
-                // it will ignored, 
-                //      if attribute uri is set, but the observation
-                //      has no value of it
-                // and
-                //      if the predicate which is labeled with DataCube's 
-                //      attribute is not equal to the given selected attribute uri
-		var xAxisElement = xAxisElements[seriesObservation[forXAxis]];
-                if (self.shouldHideElement(xAxisElement, false))
-                {
-                    // TODO implement a way to handle ignored observations
-                    return;
-                }
-                
-                /**
-                 * check if the combination of dimension elements in this series 
-                 * element was already used.
-                 */
-                uriCombination = "";
-                
-                _.each(selectedDimensionPropertyUris, function(dimensionUri){
-                    uriCombination += seriesObservation[dimensionUri];
-                });
-                
-                if (true === _.isUndefined(usedDimensionElementCombinations[uriCombination])) {
-                    usedDimensionElementCombinations[uriCombination] = true;
-                } else {
-                    // if this combination is already in use, stop execution immediatly
-                    return;
-                }                
-                
-                if(false === _.isUndefined(seriesObservation[selectedMeasureUri])) {
-                    obj.data.push ({y:parseFloat(seriesObservation[selectedMeasureUri]),
-				    cv_chart: self,
-				    xAxisElement: xAxisElement,
-				    seriesElement: seriesElement});
-                } else {
-                    obj.data.push (null);
-                }
-            });
-            
-            // if nothing was added, ignore obj
-            if (0 == _.size(obj.data)) {
-                // TODO handle ignore obj's
-            } else {
-                self.chartConfig.series.push (obj);
-            }
-        });
-    };
+    }
+    
+    /**
+     * 
+     */
+    public getRenderResult () : any 
+    {       
+        return this.chartConfig;
+    }
 }
