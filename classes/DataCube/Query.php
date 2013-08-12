@@ -260,7 +260,7 @@ class DataCube_Query
             ?observation <'.DataCube_UriOf::DataSetRelation.'> <'.$dataSetUri.'>.
             ?observation <'.$componentProperty.'> ?componentUri.
             OPTIONAL {
-                ?componentUri ?p ?o.
+                { ?componentUri ?p ?o. } UNION  { ?componentUri <http://www.w3.org/2002/07/owl#sameAs> ?related . ?related ?p ?o . } UNION { ?related <http://www.w3.org/2002/07/owl#sameAs> ?componentUri. ?related ?p ?o} 
             }
         }');
         
