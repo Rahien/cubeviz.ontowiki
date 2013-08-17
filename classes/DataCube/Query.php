@@ -14,6 +14,8 @@ class DataCube_Query
 {    
     protected $_model = null;
     protected $_store = null;
+
+    public static $useContext = "local";
     
     /**
      * Constructor
@@ -255,7 +257,8 @@ class DataCube_Query
      */
     public function getComponentElements($dataSetUri, $componentProperty) 
     {
-      $result = $this->_model->sparqlQuery(CubeViz_FromlessQuery::initWithString('SELECT ?componentUri ?p ?o WHERE {
+      if(self::$useContext == "full") {
+	$result = $this->_model->sparqlQuery(CubeViz_FromlessQuery::initWithString('SELECT ?componentUri ?p ?o WHERE {
             ?observation <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <'.DataCube_UriOf::Observation.'>.
             ?observation <'.DataCube_UriOf::DataSetRelation.'> <'.$dataSetUri.'>.
             ?observation <'.$componentProperty.'> ?componentUri.
@@ -263,12 +266,33 @@ class DataCube_Query
                 { ?componentUri ?p ?o. } UNION  { ?componentUri <http://www.w3.org/2002/07/owl#sameAs> ?related . ?related ?p ?o . } UNION { ?related <http://www.w3.org/2002/07/owl#sameAs> ?componentUri. ?related ?p ?o} 
             }
         }'));
-        
-        $result = $this->generateAssocSPOArrayFromSparqlResult($result, 'componentUri', 'p', 'o');
 
-        $result = $this->enrichResult($result);
+      }else if(self::$useContext == "local"){
+	$result = $this->_model->sparqlQuery('SELECT ?componentUri ?p ?o WHERE {
+            ?observation <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <'.DataCube_UriOf::Observation.'>.
+            ?observation <'.DataCube_UriOf::DataSetRelation.'> <'.$dataSetUri.'>.
+            ?observation <'.$componentProperty.'> ?componentUri.
+            OPTIONAL {
+                { ?componentUri ?p ?o. } UNION  { ?componentUri <http://www.w3.org/2002/07/owl#sameAs> ?related . ?related ?p ?o . } UNION { ?related <http://www.w3.org/2002/07/owl#sameAs> ?componentUri. ?related ?p ?o} 
+            }
+        }');
+
+      }else {
+	$result = $this->_model->sparqlQuery('SELECT ?componentUri ?p ?o WHERE {
+            ?observation <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <'.DataCube_UriOf::Observation.'>.
+            ?observation <'.DataCube_UriOf::DataSetRelation.'> <'.$dataSetUri.'>.
+            ?observation <'.$componentProperty.'> ?componentUri.
+            OPTIONAL {
+                { ?componentUri ?p ?o. } 
+            }
+        }');
+      }
         
-        return $result;
+      $result = $this->generateAssocSPOArrayFromSparqlResult($result, 'componentUri', 'p', 'o');
+
+      $result = $this->enrichResult($result);
+        
+      return $result;
     }
     
     /**

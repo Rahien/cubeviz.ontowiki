@@ -80,6 +80,9 @@ class DataselectionModule extends OntoWiki_Module
             
             ->appendFile ($basePath.           'ChartConfig.js',                   'text/javascript');
             
+	// check whether we want to have context information supplied to the component uris
+	DataCube_Query::$useContext = $this->_privateConfig->get('componentContextInfo');
+
         // If this module is in the "development" context
         if('development' === $this->_privateConfig->get('context')) {
             $this->view->headScript()

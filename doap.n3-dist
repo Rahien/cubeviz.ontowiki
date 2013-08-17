@@ -22,6 +22,8 @@
   owconfig:languages "languages/" ;
   
   :context "production"^^xsd:string ;
+  # context can be 'full', fetching info in sameAs values from all graphs in the database, 'local' using info from sameAs uris in current model, and 'simple' using only directly related context
+  :componentContextInfo "full"^^xsd:string ;
 
   rdfs:label "CubeViz" .
 
