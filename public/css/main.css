@@ -111,3 +111,24 @@
     -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
     box-shadow: 0 1px 2px rgba(0,0,0,.05);
 }
+
+/** hierarchy controls */
+.hierarchyControls input {
+    margin: 0 5px 0 0;
+}
+.hierarchyControls span {
+    margin: 0 10px 0 0;
+}
+.hierarchy-drill-by {
+    float: left;
+    margin: 0 5px 0 0;
+}
+.hierarchyControls div {
+    padding: 5px 0;
+    float: left;
+    width: 300px;
+}
+.hierarchyControls {
+    width: 100%;
+    overflow: hidden;
+}

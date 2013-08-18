@@ -736,6 +736,10 @@ var CubeViz_Visualization_HighCharts_Chart = (function () {
     CubeViz_Visualization_HighCharts_Chart.prototype.getRenderResult = function () {
         return this.chartConfig;
     };
+    CubeViz_Visualization_HighCharts_Chart.prototype.rendered = function (visualization) {
+    };
+    CubeViz_Visualization_HighCharts_Chart.prototype.onDestroy = function (visualization) {
+    };
     return CubeViz_Visualization_HighCharts_Chart;
 })();
 var CubeViz_Visualization_HighCharts_Area = (function (_super) {
@@ -765,17 +769,15 @@ var CubeViz_Visualization_HighCharts_Bar = (function (_super) {
 function chartClickHandler() {
     var chart = this.series.chart;
     var cv_chart = this.cv_chart;
-    cv_chart.chartConfig.observationRoot = this.xAxisElement.self.__cv_uri;
-    cv_chart.chartConfig.seriesRoot = this.seriesElement.self.__cv_uri;
-    while(chart.series[0]) {
-        chart.series[0].remove(false);
+    var xHasChild = cv_chart.getChildren(this.xAxisElement).length > 0;
+    var yHasChild = cv_chart.getChildren(this.seriesElement).length > 0;
+    if(xHasChild) {
+        cv_chart.chartConfig.observationRoot = this.xAxisElement.self.__cv_uri;
     }
-    cv_chart.updateConfiguration();
-    for(var series in cv_chart.chartConfig.series) {
-        chart.addSeries(cv_chart.chartConfig.series[series], false);
+    if(yHasChild) {
+        cv_chart.chartConfig.seriesRoot = this.seriesElement.self.__cv_uri;
     }
-    chart.xAxis[0].setCategories(cv_chart.chartConfig.xAxis.categories);
-    chart.redraw();
+    cv_chart.rerender(chart);
 }
 ; ;
 var CubeViz_Visualization_HighCharts_GBar = (function (_super) {
@@ -794,6 +796,7 @@ var CubeViz_Visualization_HighCharts_GBar = (function (_super) {
             selectedMeasureUri: selectedMeasureUri,
             selectedAttributeUri: selectedAttributeUri
         };
+        this.drillType = "both";
         this.drillingPredicate = "http://www.w3.org/2004/02/skos/core#broader";
         this.updateConfiguration();
         return this;
@@ -860,6 +863,9 @@ var CubeViz_Visualization_HighCharts_GBar = (function (_super) {
             forSeries = tmp;
         }
         observation.initialize(retrievedObservations, selectedComponentDimensions, selectedMeasureUri);
+        self.clearHierarchy();
+        self.loadHierarchy(observation.getAxesElements(forXAxis));
+        self.loadHierarchy(observation.getAxesElements(forSeries));
         if(false === _.str.isBlank(forXAxis) && false === _.str.isBlank(forSeries)) {
             self.handleTwoDimensions(observation, forXAxis, selectedComponentDimensions, forSeries, selectedAttributeUri, selectedMeasureUri);
         } else {
@@ -875,7 +881,7 @@ var CubeViz_Visualization_HighCharts_GBar = (function (_super) {
                         if(false === _.isNull(selectedAttributeUri) && (true === _.isNull(seriesObservation[selectedAttributeUri]) || true === _.isUndefined(seriesObservation[selectedAttributeUri]))) {
                             return;
                         }
-                        self.chartConfig.xAxis.categories.push(xAxisElement.self.__cv_niceLabel);
+                        self.chartConfig.xAxis.categories.push(self.fetchLabel(xAxisElement));
                         seriesDataList.push(seriesObservation[selectedMeasureUri]);
                     });
                     this.chartConfig.series = [
@@ -899,7 +905,7 @@ var CubeViz_Visualization_HighCharts_GBar = (function (_super) {
                             return;
                         }
                         self.chartConfig.series.push({
-                            name: seriesElement.self.__cv_niceLabel,
+                            name: self.fetchLabel(seriesElement),
                             data: [
                                 seriesObservation[selectedMeasureUri]
                             ]
@@ -915,7 +921,16 @@ var CubeViz_Visualization_HighCharts_GBar = (function (_super) {
                 }
             }
         };
+        self.configureAxes();
         return this;
+    };
+    CubeViz_Visualization_HighCharts_GBar.prototype.configureAxes = function () {
+        this.chartConfig.xAxis.labels = {
+            useHTML: true
+        };
+        this.chartConfig.yAxis.labels = {
+            useHTML: true
+        };
     };
     CubeViz_Visualization_HighCharts_GBar.prototype.shouldHideElement = function (element, seriesElement) {
         var reference = null;
@@ -936,6 +951,64 @@ var CubeViz_Visualization_HighCharts_GBar = (function (_super) {
             return true;
         }
     };
+    CubeViz_Visualization_HighCharts_GBar.prototype.clearHierarchy = function () {
+        this.hierarchyTopDown = {
+        };
+        this.hierarchyBottomUp = {
+        };
+    };
+    CubeViz_Visualization_HighCharts_GBar.prototype.loadHierarchy = function (elements) {
+        var self = this;
+        _.each(elements, function (element) {
+            var parent = element.self[self.drillingPredicate];
+            var elementUri = element.self.__cv_uri;
+            if(parent && typeof parent == "string") {
+                self.hierarchyBottomUp[elementUri] = elements[parent];
+                if(!self.hierarchyTopDown[parent]) {
+                    self.hierarchyTopDown[parent] = {
+                    };
+                }
+                self.hierarchyTopDown[parent][elementUri] = element;
+            } else {
+                if(parent) {
+                    for(var prop in parent) {
+                        var singleParent = parent[prop];
+                        self.hierarchyBottomUp[elementUri] = elements[singleParent];
+                        if(!self.hierarchyTopDown[singleParent]) {
+                            self.hierarchyTopDown[singleParent] = {
+                            };
+                        }
+                        self.hierarchyTopDown[singleParent][elementUri] = element;
+                    }
+                }
+            }
+        });
+    };
+    CubeViz_Visualization_HighCharts_GBar.prototype.getChildren = function (element) {
+        var list = [];
+        var children = this.hierarchyTopDown[element.self.__cv_uri];
+        if(!children) {
+            children = {
+            };
+        }
+        _.each(children, function (child) {
+            list.push(child);
+        });
+        return list;
+    };
+    CubeViz_Visualization_HighCharts_GBar.prototype.getParent = function (element) {
+        return this.hierarchyBottomUp[element.self.__cv_uri];
+    };
+    CubeViz_Visualization_HighCharts_GBar.prototype.fetchLabel = function (element) {
+        var s = "<div>" + element.self.__cv_niceLabel + "</div>";
+        var current = element;
+        var parent;
+        while(parent = this.getParent(current)) {
+            s = "<div>" + parent.self.__cv_niceLabel + " &gt; </div>" + s;
+            current = parent;
+        }
+        return s;
+    };
     CubeViz_Visualization_HighCharts_GBar.prototype.handleTwoDimensions = function (observation, forXAxis, selectedComponentDimensions, forSeries, selectedAttributeUri, selectedMeasureUri) {
         var xAxisElements = observation.getAxesElements(forXAxis);
         var self = this;
@@ -943,7 +1016,7 @@ var CubeViz_Visualization_HighCharts_GBar = (function (_super) {
             if(self.shouldHideElement(xAxisElement, false)) {
                 return;
             }
-            self.chartConfig.xAxis.categories.push(xAxisElement.self.__cv_niceLabel);
+            self.chartConfig.xAxis.categories.push(self.fetchLabel(xAxisElement));
         });
         var selectedDimensionPropertyUris = [];
         _.each(selectedComponentDimensions, function (dimension) {
@@ -961,7 +1034,7 @@ var CubeViz_Visualization_HighCharts_GBar = (function (_super) {
             obj = {
                 color: CubeViz_Visualization_Controller.getColor(seriesElement.self.__cv_uri),
                 data: [],
-                name: seriesElement.self.__cv_niceLabel
+                name: self.fetchLabel(seriesElement)
             };
             if(self.shouldHideElement(seriesElement, true)) {
                 return;
@@ -996,6 +1069,37 @@ var CubeViz_Visualization_HighCharts_GBar = (function (_super) {
                 self.chartConfig.series.push(obj);
             }
         });
+    };
+    CubeViz_Visualization_HighCharts_GBar.prototype.rerender = function (visualization) {
+        while(visualization.series[0]) {
+            visualization.series[0].remove(false);
+        }
+        this.updateConfiguration();
+        for(var series in this.chartConfig.series) {
+            visualization.addSeries(this.chartConfig.series[series], false);
+        }
+        visualization.xAxis[0].setCategories(this.chartConfig.xAxis.categories);
+        visualization.redraw();
+    };
+    CubeViz_Visualization_HighCharts_GBar.prototype.rendered = function (visualization) {
+        if(this.hierarchyControls) {
+            return;
+        }
+        $("#cubeviz-index-legend").before('<div class="hierarchyControls">' + '<div><strong class="hierarchy-drill-by"> Drill by </strong>' + '<form>' + '<input type="radio" name="drilling" value="x"><span>x-axis</span>' + '<input type="radio" name="drilling" value="y"><span>y-axis</span>' + '<input type="radio" name="drilling" value="both" checked=true><span>both axes</span>' + '</form></div><button type="button">Move Up</button></div>');
+        this.hierarchyControls = $("#cubeviz-index-legend").prev()[0];
+        var button = this.hierarchyControls.children[1];
+        var form = this.hierarchyControls.children[0].children[1];
+        var self = this;
+        $(button).click(function () {
+            console.log("clicked");
+        });
+        $(form).find("input").change(function () {
+            self.drillType = $(this).val();
+            self.rerender(visualization);
+        });
+    };
+    CubeViz_Visualization_HighCharts_GBar.prototype.onDestroy = function (visualization) {
+        $(this.hierarchyControls).remove();
     };
     return CubeViz_Visualization_HighCharts_GBar;
 })(CubeViz_Visualization_HighCharts_Chart);
@@ -2791,6 +2895,7 @@ var View_IndexAction_Visualization = (function (_super) {
         }
         if(false === _.isUndefined(this.app._.generatedVisualization)) {
             try  {
+                this.app._.generatedVisualization._cubeviz_configuration.onDestroy(this.app._.generatedVisualization);
                 this.app._.generatedVisualization.destroy();
             } catch (ex) {
                 if(false === _.isUndefined(console) && false === _.isUndefined(console.log)) {
@@ -2808,6 +2913,8 @@ var View_IndexAction_Visualization = (function (_super) {
                 return this;
             }
             this.app._.generatedVisualization = new Highcharts.Chart(chart.getRenderResult());
+            this.app._.generatedVisualization._cubeviz_configuration = chart;
+            chart.rendered(this.app._.generatedVisualization);
         } catch (ex) {
             this.handleException(ex);
         }

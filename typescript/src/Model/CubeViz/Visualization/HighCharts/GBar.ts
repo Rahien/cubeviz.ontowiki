@@ -2,35 +2,40 @@ function chartClickHandler() {
     var chart = this.series.chart;
     var cv_chart = this.cv_chart;
 
-    cv_chart.chartConfig.observationRoot = this.xAxisElement.self.__cv_uri;
-    cv_chart.chartConfig.seriesRoot = this.seriesElement.self.__cv_uri;
-    while(chart.series[0]){
-	chart.series[0].remove(false);
-    }
+    var xHasChild = cv_chart.getChildren(this.xAxisElement).length > 0;
+    var yHasChild = cv_chart.getChildren(this.seriesElement).length > 0;
 
-    cv_chart.updateConfiguration();
-    
-    for(var series in cv_chart.chartConfig.series){
-	chart.addSeries(cv_chart.chartConfig.series[series],false);
+    if(xHasChild){
+	cv_chart.chartConfig.observationRoot = this.xAxisElement.self.__cv_uri;
     }
-
-    chart.xAxis[0].setCategories(cv_chart.chartConfig.xAxis.categories);
+    if(yHasChild){
+	cv_chart.chartConfig.seriesRoot = this.seriesElement.self.__cv_uri;
+    }
     
-    chart.redraw();
+    cv_chart.rerender(chart);
 };
+
 
 /**
  * A grouped bar chart for rendering elements in groups
  */
 class CubeViz_Visualization_HighCharts_GBar extends CubeViz_Visualization_HighCharts_Chart 
 {
+    //* the current chart configuration, may be changed from the original configuration.
     public chartConfig:any;
     //* predicate used for drilling
     public drillingPredicate:string;
-
-    //* we are going to hack this class a bit
+    //* we are going to hack this class a bit, keeping the original configuration around is useful
     public originalConfiguration:any;
-    
+    //* the hierarchy information, holding the children for every parent element
+    public hierarchyTopDown:any;
+    //* the hierarchy information, holding the parent for every child
+    public hierarchyBottomUp:any;
+    //* the hierarchy controls craeted during post rendering process
+    public hierarchyControls:any;
+    //* the type of drilling used, can be both, x or y
+    public drillType:string;
+
     /**
      * Initialize a chart instance.
      * @param chartConfig Related chart configuration
@@ -57,6 +62,8 @@ class CubeViz_Visualization_HighCharts_GBar extends CubeViz_Visualization_HighCh
             oneElementDimensions:oneElementDimensions, selectedMeasureUri:selectedMeasureUri,
             selectedAttributeUri:selectedAttributeUri
 	};
+	
+	this.drillType = "both";
 
 	this.drillingPredicate="http://www.w3.org/2004/02/skos/core#broader";
 	
@@ -153,6 +160,10 @@ class CubeViz_Visualization_HighCharts_GBar extends CubeViz_Visualization_HighCh
         // initializing observation handling instance with given elements
         // after init, sorting the x axis elements ascending
         observation.initialize(retrievedObservations, selectedComponentDimensions, selectedMeasureUri);
+
+	self.clearHierarchy();
+	self.loadHierarchy(observation.getAxesElements(forXAxis));
+	self.loadHierarchy(observation.getAxesElements(forSeries));
         
         /**
          * Check if there are exactly one or two multiple dimensions
@@ -200,7 +211,7 @@ class CubeViz_Visualization_HighCharts_GBar extends CubeViz_Visualization_HighCh
                     
                     // add entry on the y axis
                     self.chartConfig.xAxis.categories.push(
-                        xAxisElement.self.__cv_niceLabel
+                        self.fetchLabel(xAxisElement)
                     );
                     
                     // save related value
@@ -258,7 +269,7 @@ class CubeViz_Visualization_HighCharts_GBar extends CubeViz_Visualization_HighCh
                     
                     // add entry on the y axis
                     self.chartConfig.series.push({
-                        name: seriesElement.self.__cv_niceLabel,
+                        name: self.fetchLabel(seriesElement),
                         data: [seriesObservation[selectedMeasureUri]]
                     });
                 });
@@ -266,8 +277,16 @@ class CubeViz_Visualization_HighCharts_GBar extends CubeViz_Visualization_HighCh
         }
 
 	self.chartConfig.plotOptions[self.chartConfig.chart.type] = { point : { events : {click : chartClickHandler}}};
+
+	self.configureAxes();
         
         return this;
+    };
+
+    //* provides all configuration settings for the axes.
+    public configureAxes() : void {
+	this.chartConfig.xAxis.labels={useHTML:true};
+	this.chartConfig.yAxis.labels={useHTML:true};
     };
 
     //* whether or not the given element should be hidden
@@ -292,6 +311,68 @@ class CubeViz_Visualization_HighCharts_GBar extends CubeViz_Visualization_HighCh
 	}
     };
 
+    //* clears the current hierarchy, making sure the maps are completely empty
+    public clearHierarchy() : void {
+	this.hierarchyTopDown = {};
+	this.hierarchyBottomUp = {};
+    }; 
+
+    //* loads the hierarchy information contained in the list of elements in the hierarchy elements
+    public loadHierarchy(elements:any) : void {
+	var self:any = this;
+        _.each(elements, function(element){
+	    var parent = element.self[self.drillingPredicate];
+	    var elementUri = element.self.__cv_uri;
+	    if(parent && typeof parent == "string"){
+		self.hierarchyBottomUp[elementUri]=elements[parent];
+		if(!self.hierarchyTopDown[parent]){
+		    self.hierarchyTopDown[parent] = {};
+		}
+		// want to have a set of elements, not a list with duplicates. This is the easiest way to check that
+		self.hierarchyTopDown[parent][elementUri] = element;
+	    }else if(parent){
+		for(var prop in parent){
+		    var singleParent = parent[prop];
+		    self.hierarchyBottomUp[elementUri]=elements[singleParent];
+		    if(!self.hierarchyTopDown[singleParent]){
+			self.hierarchyTopDown[singleParent] = {};
+		    }
+		    self.hierarchyTopDown[singleParent][elementUri] = element;
+		}
+	    }
+	});
+    };
+
+    //* returns the children of the given element in the hierarchy
+    public getChildren(element:any) : any[] {
+	var list = [];
+	var children = this.hierarchyTopDown[element.self.__cv_uri];
+	if(!children){
+	    children = {};
+	}
+	_.each(children, function(child){
+	    list.push(child);
+	});
+	return list;
+    };
+    
+    //* returns the parent in the hierarchy of elements if any
+    public getParent(element:any) : string {
+	return this.hierarchyBottomUp[element.self.__cv_uri];
+    };
+
+    //* fetches the correct label for the given component element. Uses html to represent the label!
+    public fetchLabel(element:any) : string {
+	var s = "<div>"+element.self.__cv_niceLabel+"</div>";
+	var current = element;
+	var parent;
+	while (parent = this.getParent(current)){
+	    s = "<div>"+parent.self.__cv_niceLabel+" &gt; </div>" + s;
+	    current = parent;
+	}
+	return s;
+    };
+
     public handleTwoDimensions(observation:any, forXAxis:any, selectedComponentDimensions:any, forSeries:any, selectedAttributeUri:any, selectedMeasureUri:any) : void {
         var xAxisElements:any = observation.getAxesElements(forXAxis);
 	var self:any = this;
@@ -301,7 +382,7 @@ class CubeViz_Visualization_HighCharts_GBar extends CubeViz_Visualization_HighCh
 	    if(self.shouldHideElement(xAxisElement,false)){
 		return;
 	    }
-            self.chartConfig.xAxis.categories.push(xAxisElement.self.__cv_niceLabel);
+            self.chartConfig.xAxis.categories.push(self.fetchLabel(xAxisElement));
         });
         
         /**
@@ -330,7 +411,7 @@ class CubeViz_Visualization_HighCharts_GBar extends CubeViz_Visualization_HighCh
                     seriesElement.self.__cv_uri
                 ),
                 data: [],
-                name: seriesElement.self.__cv_niceLabel
+                name: self.fetchLabel(seriesElement)
             };
 
 	    if(self.shouldHideElement(seriesElement,true)){
@@ -390,4 +471,51 @@ class CubeViz_Visualization_HighCharts_GBar extends CubeViz_Visualization_HighCh
             }
         });
     };
+
+    public rerender(visualization:any) : void {
+	while(visualization.series[0]){
+	    visualization.series[0].remove(false);
+	}
+
+	this.updateConfiguration();
+	
+	for(var series in this.chartConfig.series){
+	    visualization.addSeries(this.chartConfig.series[series],false);
+	}
+
+	visualization.xAxis[0].setCategories(this.chartConfig.xAxis.categories);
+	
+	visualization.redraw();
+    };
+
+    //* abstract function, called when visual rendering has completed. Allows the chart to handle any post processing steps
+    public rendered (visualization:any) : void {
+	if(this.hierarchyControls){
+	    return;
+	}
+	//* create the hierarchy controls
+	$("#cubeviz-index-legend").before('<div class="hierarchyControls">'+
+					  '<div><strong class="hierarchy-drill-by"> Drill by </strong>'+
+					  '<form>'+
+					   '<input type="radio" name="drilling" value="x"><span>x-axis</span>' +
+					   '<input type="radio" name="drilling" value="y"><span>y-axis</span>' +
+					   '<input type="radio" name="drilling" value="both" checked=true><span>both axes</span>' +
+					  '</form></div><button type="button">Move Up</button></div>');
+	this.hierarchyControls = $("#cubeviz-index-legend").prev()[0];
+	var button = this.hierarchyControls.children[1];
+	var form = this.hierarchyControls.children[0].children[1];
+	var self = this;
+	$(button).click(function(){
+	    console.log("clicked");
+	});
+	$(form).find("input").change(function(){
+	    self.drillType=$(this).val();
+	    self.rerender(visualization);
+	});	
+    };
+
+    public onDestroy(visualization:any){
+	$(this.hierarchyControls).remove();
+    }
+
 }

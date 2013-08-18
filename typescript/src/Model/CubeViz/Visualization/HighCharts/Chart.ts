@@ -322,7 +322,7 @@ class CubeViz_Visualization_HighCharts_Chart
         }
         
         return this;
-    }
+    };
     
     /**
      * 
@@ -330,5 +330,15 @@ class CubeViz_Visualization_HighCharts_Chart
     public getRenderResult () : any 
     {       
         return this.chartConfig;
-    }
+    };
+    
+    //* abstract function, called when visual rendering has completed. Allows the chart to handle any post processing steps
+    public rendered (visualization:any) : void {
+	//void
+    };
+    
+    //* abstract function, called when visual rendering is removed. Allows the chart to handle any post processing steps
+    public onDestroy(visualization:any){
+	//void
+    };
 }

@@ -198,6 +198,7 @@ class View_IndexAction_Visualization extends CubeViz_View_Abstract
         // if chart was created before, first destroy this instance
         if(false === _.isUndefined(this.app._.generatedVisualization)){
             try {
+		this.app._.generatedVisualization._cubeviz_configuration.onDestroy(this.app._.generatedVisualization);
                 this.app._.generatedVisualization.destroy();
             } catch (ex) {
                 // show exception if console.log is available, check because 
@@ -244,6 +245,10 @@ class View_IndexAction_Visualization extends CubeViz_View_Abstract
             this.app._.generatedVisualization = new Highcharts.Chart(
                 chart.getRenderResult()
             );
+	    this.app._.generatedVisualization._cubeviz_configuration = chart;
+
+	    // give chart the option to do post processing
+	    chart.rendered(this.app._.generatedVisualization);
         } catch (ex) { 
             this.handleException(ex);
         }
