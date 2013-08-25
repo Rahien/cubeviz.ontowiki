@@ -738,7 +738,7 @@ var CubeViz_Visualization_HighCharts_Chart = (function () {
     };
     CubeViz_Visualization_HighCharts_Chart.prototype.rendered = function (visualization) {
     };
-    CubeViz_Visualization_HighCharts_Chart.prototype.onDestroy = function (visualization) {
+    CubeViz_Visualization_HighCharts_Chart.prototype.onDestroy = function () {
     };
     return CubeViz_Visualization_HighCharts_Chart;
 })();
@@ -767,17 +767,14 @@ var CubeViz_Visualization_HighCharts_Bar = (function (_super) {
     return CubeViz_Visualization_HighCharts_Bar;
 })(CubeViz_Visualization_HighCharts_Chart);
 function chartClickHandler() {
-    var chart = this.series.chart;
     var cv_chart = this.cv_chart;
-    var xHasChild = cv_chart.getChildren(this.xAxisElement).length > 0;
-    var yHasChild = cv_chart.getChildren(this.seriesElement).length > 0;
-    if(xHasChild) {
-        cv_chart.chartConfig.observationRoot = this.xAxisElement.self.__cv_uri;
+    if(cv_chart.canDrillX(this.xAxisElement)) {
+        cv_chart.chartConfig.xRoot = this.xAxisElement.self.__cv_uri;
     }
-    if(yHasChild) {
-        cv_chart.chartConfig.seriesRoot = this.seriesElement.self.__cv_uri;
+    if(cv_chart.canDrillY(this.seriesElement)) {
+        cv_chart.chartConfig.yRoot = this.seriesElement.self.__cv_uri;
     }
-    cv_chart.rerender(chart);
+    cv_chart.rerender();
 }
 ; ;
 var CubeViz_Visualization_HighCharts_GBar = (function (_super) {
@@ -864,8 +861,8 @@ var CubeViz_Visualization_HighCharts_GBar = (function (_super) {
         }
         observation.initialize(retrievedObservations, selectedComponentDimensions, selectedMeasureUri);
         self.clearHierarchy();
-        self.loadHierarchy(observation.getAxesElements(forXAxis));
-        self.loadHierarchy(observation.getAxesElements(forSeries));
+        self.xTopNodes = self.loadHierarchy(observation.getAxesElements(forXAxis));
+        self.yTopNodes = self.loadHierarchy(observation.getAxesElements(forSeries));
         if(false === _.str.isBlank(forXAxis) && false === _.str.isBlank(forSeries)) {
             self.handleTwoDimensions(observation, forXAxis, selectedComponentDimensions, forSeries, selectedAttributeUri, selectedMeasureUri);
         } else {
@@ -935,9 +932,9 @@ var CubeViz_Visualization_HighCharts_GBar = (function (_super) {
     CubeViz_Visualization_HighCharts_GBar.prototype.shouldHideElement = function (element, seriesElement) {
         var reference = null;
         if(seriesElement) {
-            reference = this.chartConfig.seriesRoot;
+            reference = this.chartConfig.yRoot;
         } else {
-            reference = this.chartConfig.observationRoot;
+            reference = this.chartConfig.xRoot;
         }
         var drillValue = element.self[this.drillingPredicate];
         if(!drillValue || typeof drillValue == "string") {
@@ -959,6 +956,7 @@ var CubeViz_Visualization_HighCharts_GBar = (function (_super) {
     };
     CubeViz_Visualization_HighCharts_GBar.prototype.loadHierarchy = function (elements) {
         var self = this;
+        var roots = [];
         _.each(elements, function (element) {
             var parent = element.self[self.drillingPredicate];
             var elementUri = element.self.__cv_uri;
@@ -980,11 +978,17 @@ var CubeViz_Visualization_HighCharts_GBar = (function (_super) {
                         }
                         self.hierarchyTopDown[singleParent][elementUri] = element;
                     }
+                } else {
+                    roots.push(elementUri);
                 }
             }
         });
+        return roots;
     };
     CubeViz_Visualization_HighCharts_GBar.prototype.getChildren = function (element) {
+        if(!element) {
+            return [];
+        }
         var list = [];
         var children = this.hierarchyTopDown[element.self.__cv_uri];
         if(!children) {
@@ -997,7 +1001,13 @@ var CubeViz_Visualization_HighCharts_GBar = (function (_super) {
         return list;
     };
     CubeViz_Visualization_HighCharts_GBar.prototype.getParent = function (element) {
-        return this.hierarchyBottomUp[element.self.__cv_uri];
+        return this.getParentByUri(element ? element.self.__cv_uri : element);
+    };
+    CubeViz_Visualization_HighCharts_GBar.prototype.getParentByUri = function (elementUri) {
+        if(!elementUri) {
+            return null;
+        }
+        return this.hierarchyBottomUp[elementUri];
     };
     CubeViz_Visualization_HighCharts_GBar.prototype.fetchLabel = function (element) {
         var s = "<div>" + element.self.__cv_niceLabel + "</div>";
@@ -1070,7 +1080,8 @@ var CubeViz_Visualization_HighCharts_GBar = (function (_super) {
             }
         });
     };
-    CubeViz_Visualization_HighCharts_GBar.prototype.rerender = function (visualization) {
+    CubeViz_Visualization_HighCharts_GBar.prototype.rerender = function () {
+        var visualization = this.currentVisualization;
         while(visualization.series[0]) {
             visualization.series[0].remove(false);
         }
@@ -1082,6 +1093,7 @@ var CubeViz_Visualization_HighCharts_GBar = (function (_super) {
         visualization.redraw();
     };
     CubeViz_Visualization_HighCharts_GBar.prototype.rendered = function (visualization) {
+        this.currentVisualization = visualization;
         if(this.hierarchyControls) {
             return;
         }
@@ -1091,15 +1103,44 @@ var CubeViz_Visualization_HighCharts_GBar = (function (_super) {
         var form = this.hierarchyControls.children[0].children[1];
         var self = this;
         $(button).click(function () {
-            console.log("clicked");
+            self.moveUp();
         });
         $(form).find("input").change(function () {
             self.drillType = $(this).val();
-            self.rerender(visualization);
         });
     };
-    CubeViz_Visualization_HighCharts_GBar.prototype.onDestroy = function (visualization) {
+    CubeViz_Visualization_HighCharts_GBar.prototype.moveUp = function () {
+        if(this.canRollUpX()) {
+            var parentX = this.getParentByUri(this.chartConfig.xRoot);
+            this.chartConfig.xRoot = parentX ? parentX.self.__cv_uri : null;
+        }
+        if(this.canRollUpY()) {
+            var parentY = this.getParentByUri(this.chartConfig.yRoot);
+            this.chartConfig.yRoot = parentY ? parentY.self.__cv_uri : null;
+        }
+        this.rerender();
+        return this;
+    };
+    CubeViz_Visualization_HighCharts_GBar.prototype.onDestroy = function () {
         $(this.hierarchyControls).remove();
+    };
+    CubeViz_Visualization_HighCharts_GBar.prototype.getCurrentXRoot = function () {
+        return this.chartConfig.xRoot;
+    };
+    CubeViz_Visualization_HighCharts_GBar.prototype.getCurrentYRoot = function () {
+        return this.chartConfig.yRoot;
+    };
+    CubeViz_Visualization_HighCharts_GBar.prototype.canDrillX = function (targetX) {
+        return this.getChildren(targetX).length > 0 && (this.drillType == "both" || this.drillType == "x");
+    };
+    CubeViz_Visualization_HighCharts_GBar.prototype.canDrillY = function (targetY) {
+        return this.getChildren(targetY).length > 0 && (this.drillType == "both" || this.drillType == "y");
+    };
+    CubeViz_Visualization_HighCharts_GBar.prototype.canRollUpX = function () {
+        return (this.drillType == "both" || this.drillType == "x");
+    };
+    CubeViz_Visualization_HighCharts_GBar.prototype.canRollUpY = function () {
+        return (this.drillType == "both" || this.drillType == "y");
     };
     return CubeViz_Visualization_HighCharts_GBar;
 })(CubeViz_Visualization_HighCharts_Chart);
@@ -2895,7 +2936,7 @@ var View_IndexAction_Visualization = (function (_super) {
         }
         if(false === _.isUndefined(this.app._.generatedVisualization)) {
             try  {
-                this.app._.generatedVisualization._cubeviz_configuration.onDestroy(this.app._.generatedVisualization);
+                this.app._.generatedVisualization._cubeviz_configuration.onDestroy();
                 this.app._.generatedVisualization.destroy();
             } catch (ex) {
                 if(false === _.isUndefined(console) && false === _.isUndefined(console.log)) {

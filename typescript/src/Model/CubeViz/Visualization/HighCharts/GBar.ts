@@ -1,20 +1,15 @@
 function chartClickHandler() {
-    var chart = this.series.chart;
     var cv_chart = this.cv_chart;
 
-    var xHasChild = cv_chart.getChildren(this.xAxisElement).length > 0;
-    var yHasChild = cv_chart.getChildren(this.seriesElement).length > 0;
-
-    if(xHasChild){
-	cv_chart.chartConfig.observationRoot = this.xAxisElement.self.__cv_uri;
+    if(cv_chart.canDrillX(this.xAxisElement)){
+	cv_chart.chartConfig.xRoot = this.xAxisElement.self.__cv_uri;
     }
-    if(yHasChild){
-	cv_chart.chartConfig.seriesRoot = this.seriesElement.self.__cv_uri;
+    if(cv_chart.canDrillY(this.seriesElement)){
+	cv_chart.chartConfig.yRoot = this.seriesElement.self.__cv_uri;
     }
     
-    cv_chart.rerender(chart);
+    cv_chart.rerender();
 };
-
 
 /**
  * A grouped bar chart for rendering elements in groups
@@ -27,14 +22,20 @@ class CubeViz_Visualization_HighCharts_GBar extends CubeViz_Visualization_HighCh
     public drillingPredicate:string;
     //* we are going to hack this class a bit, keeping the original configuration around is useful
     public originalConfiguration:any;
-    //* the hierarchy information, holding the children for every parent element
+    //* the hierarchy information, holding the child elements for every parent uri
     public hierarchyTopDown:any;
-    //* the hierarchy information, holding the parent for every child
+    //* the hierarchy information, holding the parent element for every child uri
     public hierarchyBottomUp:any;
     //* the hierarchy controls craeted during post rendering process
     public hierarchyControls:any;
     //* the type of drilling used, can be both, x or y
     public drillType:string;
+    //* the current Highcharts visualization that is being used. Remembered so the chart configuration has control over when to re-render the visualization
+    public currentVisualization:any;
+    //* top nodes of the hierarchy (x)
+    public xTopNodes:any;
+    //* top nodes of the hierarhcy (y)
+    public yTopNodes:any;
 
     /**
      * Initialize a chart instance.
@@ -162,8 +163,8 @@ class CubeViz_Visualization_HighCharts_GBar extends CubeViz_Visualization_HighCh
         observation.initialize(retrievedObservations, selectedComponentDimensions, selectedMeasureUri);
 
 	self.clearHierarchy();
-	self.loadHierarchy(observation.getAxesElements(forXAxis));
-	self.loadHierarchy(observation.getAxesElements(forSeries));
+	self.xTopNodes = self.loadHierarchy(observation.getAxesElements(forXAxis));
+	self.yTopNodes = self.loadHierarchy(observation.getAxesElements(forSeries));
         
         /**
          * Check if there are exactly one or two multiple dimensions
@@ -293,9 +294,9 @@ class CubeViz_Visualization_HighCharts_GBar extends CubeViz_Visualization_HighCh
     public shouldHideElement(element:any, seriesElement:bool) :bool {
 	var reference = null;
 	if(seriesElement){
-	    reference = this.chartConfig.seriesRoot
+	    reference = this.chartConfig.yRoot
 	}else{
-	    reference = this.chartConfig.observationRoot
+	    reference = this.chartConfig.xRoot
 	}
 
 	var drillValue = element.self[this.drillingPredicate];
@@ -317,9 +318,13 @@ class CubeViz_Visualization_HighCharts_GBar extends CubeViz_Visualization_HighCh
 	this.hierarchyBottomUp = {};
     }; 
 
-    //* loads the hierarchy information contained in the list of elements in the hierarchy elements
-    public loadHierarchy(elements:any) : void {
+   /**
+    * loads the hierarchy information contained in the list of elements in the hierarchy elements. 
+    * returns the roots of the hierarchy. 
+    */
+    public loadHierarchy(elements:any) : any {
 	var self:any = this;
+	var roots = [];
         _.each(elements, function(element){
 	    var parent = element.self[self.drillingPredicate];
 	    var elementUri = element.self.__cv_uri;
@@ -339,12 +344,20 @@ class CubeViz_Visualization_HighCharts_GBar extends CubeViz_Visualization_HighCh
 		    }
 		    self.hierarchyTopDown[singleParent][elementUri] = element;
 		}
+	    }else{
+		roots.push(elementUri);
 	    }
 	});
+
+	return roots;
     };
 
     //* returns the children of the given element in the hierarchy
     public getChildren(element:any) : any[] {
+	if(!element){
+	    return [];
+	}
+
 	var list = [];
 	var children = this.hierarchyTopDown[element.self.__cv_uri];
 	if(!children){
@@ -357,8 +370,16 @@ class CubeViz_Visualization_HighCharts_GBar extends CubeViz_Visualization_HighCh
     };
     
     //* returns the parent in the hierarchy of elements if any
-    public getParent(element:any) : string {
-	return this.hierarchyBottomUp[element.self.__cv_uri];
+    public getParent(element:any) : any {
+	return this.getParentByUri(element?element.self.__cv_uri:element);
+    };
+    
+    //* uses the uri of the element to look up its parent
+    public getParentByUri(elementUri:string) : any {
+	if(!elementUri){
+	    return null;
+	}
+	return this.hierarchyBottomUp[elementUri];
     };
 
     //* fetches the correct label for the given component element. Uses html to represent the label!
@@ -472,7 +493,8 @@ class CubeViz_Visualization_HighCharts_GBar extends CubeViz_Visualization_HighCh
         });
     };
 
-    public rerender(visualization:any) : void {
+    public rerender() : void {
+	var visualization = this.currentVisualization;
 	while(visualization.series[0]){
 	    visualization.series[0].remove(false);
 	}
@@ -488,8 +510,9 @@ class CubeViz_Visualization_HighCharts_GBar extends CubeViz_Visualization_HighCh
 	visualization.redraw();
     };
 
-    //* abstract function, called when visual rendering has completed. Allows the chart to handle any post processing steps
+    //* abstract function, called when visual rendering has completed. Allows the chart to handle any post processing steps, also keeps the visualization around for further processing
     public rendered (visualization:any) : void {
+	this.currentVisualization = visualization;
 	if(this.hierarchyControls){
 	    return;
 	}
@@ -506,16 +529,57 @@ class CubeViz_Visualization_HighCharts_GBar extends CubeViz_Visualization_HighCh
 	var form = this.hierarchyControls.children[0].children[1];
 	var self = this;
 	$(button).click(function(){
-	    console.log("clicked");
+	    self.moveUp();
 	});
 	$(form).find("input").change(function(){
-	    self.drillType=$(this).val();
-	    self.rerender(visualization);
+	    self.drillType = $(this).val();
 	});	
     };
 
-    public onDestroy(visualization:any){
+    //* moves up in the hierarchy, depending on the setting of the drillType
+    public moveUp() : any {
+	if(this.canRollUpX()){
+	    var parentX=this.getParentByUri(this.chartConfig.xRoot);
+	    this.chartConfig.xRoot = parentX?parentX.self.__cv_uri:null;
+	}
+	if(this.canRollUpY()){
+	    var parentY=this.getParentByUri(this.chartConfig.yRoot);
+	    this.chartConfig.yRoot = parentY?parentY.self.__cv_uri:null;
+	}
+
+	this.rerender();
+
+	return this;
+    };
+
+    public onDestroy() : void {
 	$(this.hierarchyControls).remove();
-    }
+    };
+
+    public getCurrentXRoot() : any {
+	return this.chartConfig.xRoot;
+    };
+
+    public getCurrentYRoot() : any {
+	return this.chartConfig.yRoot;
+    };
+
+    public canDrillX(targetX) : bool {
+	return this.getChildren(targetX).length>0 && 
+	    (this.drillType == "both" || this.drillType == "x");
+    };
+
+    public canDrillY(targetY) : bool {
+	return this.getChildren(targetY).length>0 && 
+	    (this.drillType == "both" || this.drillType == "y");
+    };
+
+    public canRollUpX() : bool {
+	return (this.drillType == "both" || this.drillType == "x");
+    };
+
+    public canRollUpY() : bool {
+	return (this.drillType == "both" || this.drillType == "y");
+    };
 
 }

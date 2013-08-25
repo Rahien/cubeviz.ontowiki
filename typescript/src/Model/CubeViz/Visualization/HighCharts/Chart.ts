@@ -338,7 +338,7 @@ class CubeViz_Visualization_HighCharts_Chart
     };
     
     //* abstract function, called when visual rendering is removed. Allows the chart to handle any post processing steps
-    public onDestroy(visualization:any){
+    public onDestroy(){
 	//void
     };
 }
