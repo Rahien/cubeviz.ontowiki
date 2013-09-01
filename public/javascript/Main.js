@@ -793,8 +793,9 @@ var CubeViz_Visualization_HighCharts_GBar = (function (_super) {
             selectedMeasureUri: selectedMeasureUri,
             selectedAttributeUri: selectedAttributeUri
         };
+        this.hierarchy = new DataCube_Hierarchy("http://www.w3.org/2004/02/skos/core#broader");
+        this.bottomOnly = false;
         this.drillType = "both";
-        this.drillingPredicate = "http://www.w3.org/2004/02/skos/core#broader";
         this.updateConfiguration();
         return this;
     };
@@ -860,9 +861,9 @@ var CubeViz_Visualization_HighCharts_GBar = (function (_super) {
             forSeries = tmp;
         }
         observation.initialize(retrievedObservations, selectedComponentDimensions, selectedMeasureUri);
-        self.clearHierarchy();
-        self.xTopNodes = self.loadHierarchy(observation.getAxesElements(forXAxis));
-        self.yTopNodes = self.loadHierarchy(observation.getAxesElements(forSeries));
+        self.hierarchy.clear();
+        self.hierarchy.load(observation.getAxesElements(forXAxis), "x");
+        self.hierarchy.load(observation.getAxesElements(forSeries), "y");
         if(false === _.str.isBlank(forXAxis) && false === _.str.isBlank(forSeries)) {
             self.handleTwoDimensions(observation, forXAxis, selectedComponentDimensions, forSeries, selectedAttributeUri, selectedMeasureUri);
         } else {
@@ -930,13 +931,16 @@ var CubeViz_Visualization_HighCharts_GBar = (function (_super) {
         };
     };
     CubeViz_Visualization_HighCharts_GBar.prototype.shouldHideElement = function (element, seriesElement) {
+        if(this.bottomOnly) {
+            return !element || this.hierarchy.getChildren(element).length != 0;
+        }
         var reference = null;
         if(seriesElement) {
             reference = this.chartConfig.yRoot;
         } else {
             reference = this.chartConfig.xRoot;
         }
-        var drillValue = element.self[this.drillingPredicate];
+        var drillValue = element.self[this.hierarchy.drillingPredicate];
         if(!drillValue || typeof drillValue == "string") {
             return reference != drillValue;
         } else {
@@ -948,72 +952,11 @@ var CubeViz_Visualization_HighCharts_GBar = (function (_super) {
             return true;
         }
     };
-    CubeViz_Visualization_HighCharts_GBar.prototype.clearHierarchy = function () {
-        this.hierarchyTopDown = {
-        };
-        this.hierarchyBottomUp = {
-        };
-    };
-    CubeViz_Visualization_HighCharts_GBar.prototype.loadHierarchy = function (elements) {
-        var self = this;
-        var roots = [];
-        _.each(elements, function (element) {
-            var parent = element.self[self.drillingPredicate];
-            var elementUri = element.self.__cv_uri;
-            if(parent && typeof parent == "string") {
-                self.hierarchyBottomUp[elementUri] = elements[parent];
-                if(!self.hierarchyTopDown[parent]) {
-                    self.hierarchyTopDown[parent] = {
-                    };
-                }
-                self.hierarchyTopDown[parent][elementUri] = element;
-            } else {
-                if(parent) {
-                    for(var prop in parent) {
-                        var singleParent = parent[prop];
-                        self.hierarchyBottomUp[elementUri] = elements[singleParent];
-                        if(!self.hierarchyTopDown[singleParent]) {
-                            self.hierarchyTopDown[singleParent] = {
-                            };
-                        }
-                        self.hierarchyTopDown[singleParent][elementUri] = element;
-                    }
-                } else {
-                    roots.push(elementUri);
-                }
-            }
-        });
-        return roots;
-    };
-    CubeViz_Visualization_HighCharts_GBar.prototype.getChildren = function (element) {
-        if(!element) {
-            return [];
-        }
-        var list = [];
-        var children = this.hierarchyTopDown[element.self.__cv_uri];
-        if(!children) {
-            children = {
-            };
-        }
-        _.each(children, function (child) {
-            list.push(child);
-        });
-        return list;
-    };
-    CubeViz_Visualization_HighCharts_GBar.prototype.getParent = function (element) {
-        return this.getParentByUri(element ? element.self.__cv_uri : element);
-    };
-    CubeViz_Visualization_HighCharts_GBar.prototype.getParentByUri = function (elementUri) {
-        if(!elementUri) {
-            return null;
-        }
-        return this.hierarchyBottomUp[elementUri];
-    };
     CubeViz_Visualization_HighCharts_GBar.prototype.fetchLabel = function (element) {
         var s = "<div>" + element.self.__cv_niceLabel + "</div>";
         var current = element;
         var parent;
-        while(parent = this.getParent(current)) {
+        while(parent = this.hierarchy.getParent(current)) {
             s = "<div>" + parent.self.__cv_niceLabel + " &gt; </div>" + s;
             current = parent;
         }
@@ -1097,9 +1040,10 @@ var CubeViz_Visualization_HighCharts_GBar = (function (_super) {
         if(this.hierarchyControls) {
             return;
         }
-        $("#cubeviz-index-legend").before('<div class="hierarchyControls">' + '<div><strong class="hierarchy-drill-by"> Drill by </strong>' + '<form>' + '<input type="radio" name="drilling" value="x"><span>x-axis</span>' + '<input type="radio" name="drilling" value="y"><span>y-axis</span>' + '<input type="radio" name="drilling" value="both" checked=true><span>both axes</span>' + '</form></div><button type="button">Move Up</button></div>');
+        $("#cubeviz-index-legend").before('<div class="hierarchyControls">' + '<div><strong class="hierarchy-drill-by"> Drill by </strong>' + '<form>' + '<input type="radio" name="drilling" value="x"><span>x-axis</span>' + '<input type="radio" name="drilling" value="y"><span>y-axis</span>' + '<input type="radio" name="drilling" value="both" checked=true><span>both axes</span>' + '</form></div><button type="button">Move Up</button><span class="toggleBottomLevels"><span>Show all bottom levels</span><input type="checkbox"></span></div>');
         this.hierarchyControls = $("#cubeviz-index-legend").prev()[0];
         var button = this.hierarchyControls.children[1];
+        var checkbox = this.hierarchyControls.children[2].children[1];
         var form = this.hierarchyControls.children[0].children[1];
         var self = this;
         $(button).click(function () {
@@ -1108,14 +1052,21 @@ var CubeViz_Visualization_HighCharts_GBar = (function (_super) {
         $(form).find("input").change(function () {
             self.drillType = $(this).val();
         });
+        $(checkbox).change(function () {
+            if(this.checked) {
+                self.setBottomOnly(true);
+            } else {
+                self.setBottomOnly(false);
+            }
+        });
     };
     CubeViz_Visualization_HighCharts_GBar.prototype.moveUp = function () {
         if(this.canRollUpX()) {
-            var parentX = this.getParentByUri(this.chartConfig.xRoot);
+            var parentX = this.hierarchy.getParentByUri(this.chartConfig.xRoot);
             this.chartConfig.xRoot = parentX ? parentX.self.__cv_uri : null;
         }
         if(this.canRollUpY()) {
-            var parentY = this.getParentByUri(this.chartConfig.yRoot);
+            var parentY = this.hierarchy.getParentByUri(this.chartConfig.yRoot);
             this.chartConfig.yRoot = parentY ? parentY.self.__cv_uri : null;
         }
         this.rerender();
@@ -1131,16 +1082,20 @@ var CubeViz_Visualization_HighCharts_GBar = (function (_super) {
         return this.chartConfig.yRoot;
     };
     CubeViz_Visualization_HighCharts_GBar.prototype.canDrillX = function (targetX) {
-        return this.getChildren(targetX).length > 0 && (this.drillType == "both" || this.drillType == "x");
+        return this.hierarchy.getChildren(targetX).length > 0 && (this.drillType == "both" || this.drillType == "x");
     };
     CubeViz_Visualization_HighCharts_GBar.prototype.canDrillY = function (targetY) {
-        return this.getChildren(targetY).length > 0 && (this.drillType == "both" || this.drillType == "y");
+        return this.hierarchy.getChildren(targetY).length > 0 && (this.drillType == "both" || this.drillType == "y");
     };
     CubeViz_Visualization_HighCharts_GBar.prototype.canRollUpX = function () {
         return (this.drillType == "both" || this.drillType == "x");
     };
     CubeViz_Visualization_HighCharts_GBar.prototype.canRollUpY = function () {
         return (this.drillType == "both" || this.drillType == "y");
+    };
+    CubeViz_Visualization_HighCharts_GBar.prototype.setBottomOnly = function (value) {
+        this.bottomOnly = value;
+        this.rerender();
     };
     return CubeViz_Visualization_HighCharts_GBar;
 })(CubeViz_Visualization_HighCharts_Chart);
@@ -1499,6 +1454,75 @@ var DataCube_Slice = (function () {
         });
     }
     return DataCube_Slice;
+})();
+var DataCube_Hierarchy = (function () {
+    function DataCube_Hierarchy(drillingPredicate) {
+        this.drillingPredicate = drillingPredicate;
+        this.topNodes = {
+        };
+    }
+    DataCube_Hierarchy.prototype.clear = function () {
+        this.hierarchyTopDown = {
+        };
+        this.hierarchyBottomUp = {
+        };
+    };
+    DataCube_Hierarchy.prototype.load = function (elements, name) {
+        var self = this;
+        var roots = [];
+        _.each(elements, function (element) {
+            var parent = element.self[self.drillingPredicate];
+            var elementUri = element.self.__cv_uri;
+            if(parent && typeof parent == "string") {
+                self.hierarchyBottomUp[elementUri] = elements[parent];
+                if(!self.hierarchyTopDown[parent]) {
+                    self.hierarchyTopDown[parent] = {
+                    };
+                }
+                self.hierarchyTopDown[parent][elementUri] = element;
+            } else {
+                if(parent) {
+                    for(var prop in parent) {
+                        var singleParent = parent[prop];
+                        self.hierarchyBottomUp[elementUri] = elements[singleParent];
+                        if(!self.hierarchyTopDown[singleParent]) {
+                            self.hierarchyTopDown[singleParent] = {
+                            };
+                        }
+                        self.hierarchyTopDown[singleParent][elementUri] = element;
+                    }
+                } else {
+                    roots.push(elementUri);
+                }
+            }
+        });
+        this.topNodes[name] = roots;
+    };
+    DataCube_Hierarchy.prototype.getChildren = function (element) {
+        if(!element) {
+            return [];
+        }
+        var list = [];
+        var children = this.hierarchyTopDown[element.self.__cv_uri];
+        if(!children) {
+            children = {
+            };
+        }
+        _.each(children, function (child) {
+            list.push(child);
+        });
+        return list;
+    };
+    DataCube_Hierarchy.prototype.getParent = function (element) {
+        return this.getParentByUri(element ? element.self.__cv_uri : element);
+    };
+    DataCube_Hierarchy.prototype.getParentByUri = function (elementUri) {
+        if(!elementUri) {
+            return null;
+        }
+        return this.hierarchyBottomUp[elementUri];
+    };
+    return DataCube_Hierarchy;
 })();
 var View_DataselectionModule_DataSet = (function (_super) {
     __extends(View_DataselectionModule_DataSet, _super);
