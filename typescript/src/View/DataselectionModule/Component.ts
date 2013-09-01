@@ -122,6 +122,9 @@ class View_DataselectionModule_Component extends CubeViz_View_Abstract
             self = this,
             setElementChecked = null,
             wasSomethingSelected:bool = false;
+
+	var hierarchy:any = new DataCube_Hierarchy ();
+	hierarchy.loadArray(component.__cv_elements,"elements");
             
         componentElements
             
@@ -130,7 +133,7 @@ class View_DataselectionModule_Component extends CubeViz_View_Abstract
             
             // sort
             .sortAscendingBy("__cv_niceLabel")
-        
+
             // Go through all elements of the given component ..
             .each(function(element){
                 
@@ -148,7 +151,7 @@ class View_DataselectionModule_Component extends CubeViz_View_Abstract
                 elementInstance = $(CubeViz_View_Helper.tplReplace(
                     $("#cubeviz-dataSelectionModule-tpl-dialogCheckboxElement").html(),
                     {
-                        __cv_niceLabel: element.__cv_niceLabel,
+                        __cv_niceLabel: hierarchy.htmlElementLabel(element),
                         __cv_uri: element.__cv_uri,
                         __cv_uri2: element.__cv_uri
                     }

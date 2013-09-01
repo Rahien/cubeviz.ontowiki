@@ -793,7 +793,7 @@ var CubeViz_Visualization_HighCharts_GBar = (function (_super) {
             selectedMeasureUri: selectedMeasureUri,
             selectedAttributeUri: selectedAttributeUri
         };
-        this.hierarchy = new DataCube_Hierarchy("http://www.w3.org/2004/02/skos/core#broader");
+        this.hierarchy = new DataCube_Hierarchy();
         this.bottomOnly = false;
         this.drillType = "both";
         this.updateConfiguration();
@@ -953,14 +953,7 @@ var CubeViz_Visualization_HighCharts_GBar = (function (_super) {
         }
     };
     CubeViz_Visualization_HighCharts_GBar.prototype.fetchLabel = function (element) {
-        var s = "<div>" + element.self.__cv_niceLabel + "</div>";
-        var current = element;
-        var parent;
-        while(parent = this.hierarchy.getParent(current)) {
-            s = "<div>" + parent.self.__cv_niceLabel + " &gt; </div>" + s;
-            current = parent;
-        }
-        return s;
+        return this.hierarchy.htmlElementLabel(element);
     };
     CubeViz_Visualization_HighCharts_GBar.prototype.handleTwoDimensions = function (observation, forXAxis, selectedComponentDimensions, forSeries, selectedAttributeUri, selectedMeasureUri) {
         var xAxisElements = observation.getAxesElements(forXAxis);
@@ -1457,9 +1450,13 @@ var DataCube_Slice = (function () {
 })();
 var DataCube_Hierarchy = (function () {
     function DataCube_Hierarchy(drillingPredicate) {
+        if(!drillingPredicate) {
+            drillingPredicate = "http://www.w3.org/2004/02/skos/core#broader";
+        }
         this.drillingPredicate = drillingPredicate;
         this.topNodes = {
         };
+        this.clear();
     }
     DataCube_Hierarchy.prototype.clear = function () {
         this.hierarchyTopDown = {
@@ -1471,8 +1468,8 @@ var DataCube_Hierarchy = (function () {
         var self = this;
         var roots = [];
         _.each(elements, function (element) {
-            var parent = element.self[self.drillingPredicate];
-            var elementUri = element.self.__cv_uri;
+            var parent = (element.self || element)[self.drillingPredicate];
+            var elementUri = (element.self || element).__cv_uri;
             if(parent && typeof parent == "string") {
                 self.hierarchyBottomUp[elementUri] = elements[parent];
                 if(!self.hierarchyTopDown[parent]) {
@@ -1498,12 +1495,21 @@ var DataCube_Hierarchy = (function () {
         });
         this.topNodes[name] = roots;
     };
+    DataCube_Hierarchy.prototype.loadArray = function (elements, name) {
+        var mappedElements = {
+        };
+        _.each(elements, function (element) {
+            var elementUri = (element.self || element).__cv_uri;
+            mappedElements[elementUri] = element;
+        });
+        this.load(mappedElements, name);
+    };
     DataCube_Hierarchy.prototype.getChildren = function (element) {
         if(!element) {
             return [];
         }
         var list = [];
-        var children = this.hierarchyTopDown[element.self.__cv_uri];
+        var children = this.hierarchyTopDown[(element.self || element).__cv_uri];
         if(!children) {
             children = {
             };
@@ -1514,13 +1520,33 @@ var DataCube_Hierarchy = (function () {
         return list;
     };
     DataCube_Hierarchy.prototype.getParent = function (element) {
-        return this.getParentByUri(element ? element.self.__cv_uri : element);
+        return this.getParentByUri(element ? (element.self || element).__cv_uri : element);
     };
     DataCube_Hierarchy.prototype.getParentByUri = function (elementUri) {
         if(!elementUri) {
             return null;
         }
         return this.hierarchyBottomUp[elementUri];
+    };
+    DataCube_Hierarchy.prototype.htmlElementLabel = function (element) {
+        var s = "<div>" + (element.self || element).__cv_niceLabel + "</div>";
+        var current = element;
+        var parent;
+        while(parent = this.getParent(current)) {
+            s = "<div>" + (parent.self || parent).__cv_niceLabel + " &gt; </div>" + s;
+            current = parent;
+        }
+        return s;
+    };
+    DataCube_Hierarchy.prototype.stringElementLabel = function (element) {
+        var s = (element.self || element).__cv_niceLabel;
+        var current = element;
+        var parent;
+        while(parent = this.getParent(current)) {
+            s = (parent.self || parent).__cv_niceLabel + " > " + s;
+            current = parent;
+        }
+        return s;
     };
     return DataCube_Hierarchy;
 })();
@@ -2146,6 +2172,8 @@ var View_DataselectionModule_Component = (function (_super) {
         var setElementChecked = null;
         var wasSomethingSelected = false;
 
+        var hierarchy = new DataCube_Hierarchy();
+        hierarchy.loadArray(component.__cv_elements, "elements");
         componentElements.addList(component.__cv_elements).sortAscendingBy("__cv_niceLabel").each(function (element) {
             setElementChecked = undefined !== _.find(selectedDimensions, function (dim) {
                 return false === _.isUndefined(dim) ? dim.__cv_uri == element.__cv_uri : false;
@@ -2154,7 +2182,7 @@ var View_DataselectionModule_Component = (function (_super) {
                 wasSomethingSelected = true;
             }
             elementInstance = $(CubeViz_View_Helper.tplReplace($("#cubeviz-dataSelectionModule-tpl-dialogCheckboxElement").html(), {
-                __cv_niceLabel: element.__cv_niceLabel,
+                __cv_niceLabel: hierarchy.htmlElementLabel(element),
                 __cv_uri: element.__cv_uri,
                 __cv_uri2: element.__cv_uri
             }));

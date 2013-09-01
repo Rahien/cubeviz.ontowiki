@@ -58,7 +58,7 @@ class CubeViz_Visualization_HighCharts_GBar extends CubeViz_Visualization_HighCh
             selectedAttributeUri:selectedAttributeUri
 	};
 
-	this.hierarchy = new DataCube_Hierarchy ("http://www.w3.org/2004/02/skos/core#broader");
+	this.hierarchy = new DataCube_Hierarchy ();
 	this.bottomOnly = false;
 	this.drillType = "both";
 	
@@ -312,14 +312,7 @@ class CubeViz_Visualization_HighCharts_GBar extends CubeViz_Visualization_HighCh
 
     //* fetches the correct label for the given component element. Uses html to represent the label!
     public fetchLabel(element:any) : string {
-	var s = "<div>"+element.self.__cv_niceLabel+"</div>";
-	var current = element;
-	var parent;
-	while (parent = this.hierarchy.getParent(current)){
-	    s = "<div>"+parent.self.__cv_niceLabel+" &gt; </div>" + s;
-	    current = parent;
-	}
-	return s;
+	return this.hierarchy.htmlElementLabel(element);
     };
 
     public handleTwoDimensions(observation:any, forXAxis:any, selectedComponentDimensions:any, forSeries:any, selectedAttributeUri:any, selectedMeasureUri:any) : void {
