@@ -12,7 +12,7 @@ src/Model/CubeViz/Visualization/HighCharts/Chart.ts
 src/Model/CubeViz/Visualization/HighCharts/Area.ts
 src/Model/CubeViz/Visualization/HighCharts/AreaSpline.ts
 src/Model/CubeViz/Visualization/HighCharts/Bar.ts
-src/Model/CubeViz/Visualization/HighCharts/GBar.ts
+src/Model/CubeViz/Visualization/HighCharts/Hierarchic.ts
 src/Model/CubeViz/Visualization/HighCharts/Column.ts
 src/Model/CubeViz/Visualization/HighCharts/Line.ts
 src/Model/CubeViz/Visualization/HighCharts/Pie.ts

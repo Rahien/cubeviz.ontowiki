@@ -66,7 +66,7 @@ class DataCube_Query
      * @param $assocSPOArray Usally the result of generateAssocSPOArrayFromSparqlResult
      * @return Array An enriched version of given $assocSPOArray
      */
-    public function enrichResult($assocSPOArray)
+    public function enrichResult($assocSPOArray,$ignoreLabels = false)
     {
         $return = array();
         $titleHelper = new OntoWiki_Model_TitleHelper ($this->_model);
@@ -93,7 +93,12 @@ class DataCube_Query
 
             // Nice label using TitleHelper
 	    // $entry ['__cv_niceLabel'] = $mainKey ;// $titleHelper->getTitle($mainKey);
-            $entry ['__cv_niceLabel'] = $titleHelper->getTitle($mainKey);
+	    if ($ignoreLabels){
+	      $entry ['__cv_niceLabel'] = $mainKey ;
+	    }else {
+	      //$entry ['__cv_niceLabel'] = $mainKey ;// $titleHelper->getTitle($mainKey);
+	      $entry ['__cv_niceLabel'] = $titleHelper->getTitle($mainKey);
+	    }
 
             // Comment
             if (true === isset($entry['http://www.w3.org/2000/01/rdf-schema#comment'])
@@ -508,7 +513,7 @@ class DataCube_Query
         $result = $this->generateAssocSPOArrayFromSparqlResult($result, 's', 'p', 'o');
         
         // enrich data with CubeViz sugar
-        $result = $this->enrichResult($result);
+        $result = $this->enrichResult($result,true);
         
         return $result;
     }

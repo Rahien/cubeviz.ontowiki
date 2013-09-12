@@ -14,7 +14,7 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.48.3.1 r9886"
-   sodipodi:docname="drawing.svg">
+   sodipodi:docname="hierarchy.svg">
   <defs
      id="defs4" />
   <sodipodi:namedview
@@ -53,7 +53,10 @@
      id="layer1">
     <g
        id="g3977"
-       transform="matrix(0.80593607,0,0,0.88700565,101.69806,57.452143)">
+       transform="matrix(0.80593607,0,0,0.88700565,101.69806,57.452143)"
+       inkscape:export-filename="/home/karel/Documents/source/ontowiki/extensions/cubeviz/public/images/hierarchy.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
       <path
          sodipodi:nodetypes="cccccccccc"
          inkscape:connector-curvature="0"

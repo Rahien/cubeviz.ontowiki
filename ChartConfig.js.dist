@@ -370,7 +370,78 @@ var CubeViz_ChartConfig = {
                     }
                 ]
             },
-            
+            {
+                "label": "hierarchics",
+                "className": "CubeViz_Visualization_HighCharts_Hierarchic",
+                "icon": "hierarchy.png",
+                
+                "defaultConfig": {
+                    "chart": { 
+                        "renderTo": "cubeviz-index-visualization",
+                        "type": "bar"
+                    },
+                    "title": {
+                        "align": "left",
+                        "color": "#000000"
+                    },
+                    "plotOptions": {
+                        "series": {
+                            "stacking": null
+                        }
+                    }
+                },
+                
+                "options": [
+                    {
+                        "label": "Type",
+                        "values": [
+                            { "label": "Bar", "value": "bar", "isDefault": true },
+                            { "label": "Column", "value": "column" },
+                            { "label": "Line", "value": "line" }
+                        ],
+                        "key": "chart.type",
+                        "type": "array"
+                    },
+                    {
+                        /* System default fpr _cubeVizVisz.doSwitchingAxes is false! */
+                        "label": "Switching axes",
+                        "values": [
+                            { "label": "No", "value": false, "isDefault": true },
+                            { "label": "Yes", "value": true }
+                        ],
+                        "key": "_cubeVizVisz.doSwitchingAxes",
+                        "type": "array"
+                    },
+                    {
+                        "label": "DataLabels",
+                        "values": [
+                            { "label": "None", "value": "", "isDefault": true },
+                            { "label": "Yes", "value": "true" }
+                        ],
+                        "key": "plotOptions.series.dataLabels.enabled",
+                        "type": "array"
+                    },
+                    {
+                        "label": "Stacking",
+                        "values": [
+                            { "label": "None", "value": "", "isDefault": true },
+                            { "label": "Normal", "value": "normal" },
+                            { "label": "Percentage", "value": "percent" }
+                        ],
+                        "key": "plotOptions.series.stacking",
+                        "type": "array"                        
+                    },
+                    {
+                        "label": "Scale",
+                        "values": [
+                            { "label": "Linear", "value": "linear", "isDefault": true },
+                            { "label": "Logarithmic", "value": "logarithmic" }
+                        ],
+                        "key": "yAxis.type",
+                        "type": "array"
+                    }
+                ]
+            },
             {
                 "label": "column",
                 "className": "CubeViz_Visualization_HighCharts_Column",
