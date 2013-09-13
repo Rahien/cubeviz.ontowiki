@@ -224,6 +224,7 @@ class View_IndexAction_Visualization extends CubeViz_View_Abstract
                             console.log(ex);
                         }
                     }
+
                 }
             
                 // initialize library instance, which "controls" the chart instance
@@ -291,10 +292,15 @@ class View_IndexAction_Visualization extends CubeViz_View_Abstract
                     }
                     break;
             }
-            
+
             // render computed results
             this.app._.generatedVisualization = libraryInstance.render(chart);
             
+	    this.app._.generatedVisualization._cubeviz_configuration = chart;
+
+	    // give chart the option to do post processing
+	    chart.rendered(this.app._.generatedVisualization);
+
         } catch (ex) { 
             this.handleException(ex);
         }

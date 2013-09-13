@@ -446,7 +446,7 @@ class CubeViz_Visualization_HighCharts_Chart
         );
         
         return this;
-    }
+    };
     
     /**
      * Simply returns the adapted chartConfig.
@@ -480,4 +480,13 @@ class CubeViz_Visualization_HighCharts_Chart
             }
         };
     }
+    //* abstract function, called when visual rendering has completed. Allows the chart to handle any post processing steps
+    public rendered (visualization:any) : void {
+	//void
+    };
+    
+    //* abstract function, called when visual rendering is removed. Allows the chart to handle any post processing steps
+    public onDestroy(){
+	//void
+    };
 }

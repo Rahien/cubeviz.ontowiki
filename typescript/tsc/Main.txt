@@ -16,6 +16,7 @@ src/Model/CubeViz/Visualization/HighCharts/Chart.ts
 src/Model/CubeViz/Visualization/HighCharts/Area.ts
 src/Model/CubeViz/Visualization/HighCharts/AreaSpline.ts
 src/Model/CubeViz/Visualization/HighCharts/Bar.ts
+src/Model/CubeViz/Visualization/HighCharts/Hierarchic.ts
 src/Model/CubeViz/Visualization/HighCharts/Column.ts
 src/Model/CubeViz/Visualization/HighCharts/Line.ts
 src/Model/CubeViz/Visualization/HighCharts/Pie.ts
@@ -30,6 +31,7 @@ src/Model/DataCube/DataSet.ts
 src/Model/DataCube/DataStructureDefinition.ts
 src/Model/DataCube/Observation.ts
 src/Model/DataCube/Slice.ts
+src/Model/DataCube/Hierarchy.ts
 
 src/View/CompareAction/ModelSelection.ts
 src/View/CompareAction/DatasetSelection.ts

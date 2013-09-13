@@ -116,4 +116,6 @@
     margin-top:         20px;
 }
 
-
+.cubeviz-dataSelectionModule-dialogElements li span div {
+    display: inline;
+}
