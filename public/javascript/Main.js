@@ -1020,6 +1020,10 @@ var CubeViz_Visualization_HighCharts_Chart = (function () {
             }
         };
     };
+    CubeViz_Visualization_HighCharts_Chart.prototype.rendered = function (visualization) {
+    };
+    CubeViz_Visualization_HighCharts_Chart.prototype.onDestroy = function () {
+    };
     return CubeViz_Visualization_HighCharts_Chart;
 })();
 var CubeViz_Visualization_HighCharts_Area = (function (_super) {
@@ -2569,6 +2573,108 @@ var DataCube_Slice = (function () {
         });
     }
     return DataCube_Slice;
+})();
+var DataCube_Hierarchy = (function () {
+    function DataCube_Hierarchy(drillingPredicate) {
+        if(!drillingPredicate) {
+            drillingPredicate = "http://www.w3.org/2004/02/skos/core#broader";
+        }
+        this.drillingPredicate = drillingPredicate;
+        this.topNodes = {
+        };
+        this.clear();
+    }
+    DataCube_Hierarchy.prototype.clear = function () {
+        this.hierarchyTopDown = {
+        };
+        this.hierarchyBottomUp = {
+        };
+    };
+    DataCube_Hierarchy.prototype.load = function (elements, name) {
+        var self = this;
+        var roots = [];
+        _.each(elements, function (element) {
+            var parent = (element.self || element)[self.drillingPredicate];
+            var elementUri = (element.self || element).__cv_uri;
+            if(parent && typeof parent == "string") {
+                self.hierarchyBottomUp[elementUri] = elements[parent];
+                if(!self.hierarchyTopDown[parent]) {
+                    self.hierarchyTopDown[parent] = {
+                    };
+                }
+                self.hierarchyTopDown[parent][elementUri] = element;
+            } else {
+                if(parent) {
+                    for(var prop in parent) {
+                        var singleParent = parent[prop];
+                        self.hierarchyBottomUp[elementUri] = elements[singleParent];
+                        if(!self.hierarchyTopDown[singleParent]) {
+                            self.hierarchyTopDown[singleParent] = {
+                            };
+                        }
+                        self.hierarchyTopDown[singleParent][elementUri] = element;
+                    }
+                } else {
+                    roots.push(elementUri);
+                }
+            }
+        });
+        this.topNodes[name] = roots;
+    };
+    DataCube_Hierarchy.prototype.loadArray = function (elements, name) {
+        var mappedElements = {
+        };
+        _.each(elements, function (element) {
+            var elementUri = (element.self || element).__cv_uri;
+            mappedElements[elementUri] = element;
+        });
+        this.load(mappedElements, name);
+    };
+    DataCube_Hierarchy.prototype.getChildren = function (element) {
+        if(!element) {
+            return [];
+        }
+        var list = [];
+        var children = this.hierarchyTopDown[(element.self || element).__cv_uri];
+        if(!children) {
+            children = {
+            };
+        }
+        _.each(children, function (child) {
+            list.push(child);
+        });
+        return list;
+    };
+    DataCube_Hierarchy.prototype.getParent = function (element) {
+        return this.getParentByUri(element ? (element.self || element).__cv_uri : element);
+    };
+    DataCube_Hierarchy.prototype.getParentByUri = function (elementUri) {
+        if(!elementUri) {
+            return null;
+        }
+        return this.hierarchyBottomUp[elementUri];
+    };
+    DataCube_Hierarchy.prototype.htmlElementLabel = function (element) {
+        var s = "<div>" + (element.self || element).__cv_niceLabel + "</div>";
+        var current = element;
+        var parent;
+        while(parent = this.getParent(current)) {
+            s = "<div>" + (parent.self || parent).__cv_niceLabel + " &gt; </div>" + s;
+            current = parent;
+        }
+        return s;
+    };
+    DataCube_Hierarchy.prototype.stringElementLabel = function (element) {
+        var s = (element.self || element).__cv_niceLabel;
+        var current = element;
+        var parent;
+        while(parent = this.getParent(current)) {
+            s = (parent.self || parent).__cv_niceLabel + " > " + s;
+            current = parent;
+        }
+        return s;
+    };
+    return DataCube_Hierarchy;
 })();
 var View_CompareAction_ModelSelection = (function (_super) {
     __extends(View_CompareAction_ModelSelection, _super);
@@ -5437,6 +5543,8 @@ var View_IndexAction_Visualization = (function (_super) {
                 }
             }
             this.app._.generatedVisualization = libraryInstance.render(chart);
+            this.app._.generatedVisualization._cubeviz_configuration = chart;
+            chart.rendered(this.app._.generatedVisualization);
         } catch (ex) {
             this.handleException(ex);
         }
