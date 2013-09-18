@@ -216,6 +216,7 @@ class View_IndexAction_Visualization extends CubeViz_View_Abstract
                 // if chart was created before, first destroy this instance
                 if(false === _.isUndefined(this.app._.generatedVisualization)){
                     try {
+			this.app._.generatedVisualization._cubeviz_configuration.onDestroy();
                         this.app._.generatedVisualization.destroy();
                     } catch (ex) {
                         // show exception if console.log is available, check because 

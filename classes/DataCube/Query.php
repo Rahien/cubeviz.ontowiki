@@ -573,8 +573,7 @@ class DataCube_Query
                 ?dimensionpecification qb:dimension ?dimension . 
                 ?measurespecification a qb:ComponentSpecification . 
                 ?measurespecification qb:measure ?measure . 
-            }
-            LIMIT 1000;';
+            }';
         
         // generate unique hash using given result and model uri
         $objectId = md5($this->_model->getModelIri() . $sparql);
@@ -690,7 +689,7 @@ class DataCube_Query
             
             $queryObject->setWherePart($where);
             
-            $queryObject->setLimit(500);
+            //$queryObject->setLimit(500);
             
             $result = $this->_model->sparqlQuery((string) $queryObject);
             

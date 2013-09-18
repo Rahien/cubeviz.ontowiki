@@ -1051,7 +1051,7 @@ var CubeViz_Visualization_HighCharts_Bar = (function (_super) {
     return CubeViz_Visualization_HighCharts_Bar;
 })(CubeViz_Visualization_HighCharts_Chart);
 function chartClickHandler() {
-    var cv_chart = this.cv_chart;
+    var cv_chart = this.series.chart._cubeviz_configuration;
     if(cv_chart.canDrillX(this.xAxisElement)) {
         cv_chart.chartConfig.xRoot = this.xAxisElement.self.__cv_uri;
     }
@@ -1067,14 +1067,14 @@ var CubeViz_Visualization_HighCharts_Hierarchic = (function (_super) {
         _super.apply(this, arguments);
 
     }
-    CubeViz_Visualization_HighCharts_Hierarchic.prototype.init = function (chartConfig, retrievedObservations, selectedComponentDimensions, multipleDimensions, oneElementDimensions, selectedMeasureUri, selectedAttributeUri) {
+    CubeViz_Visualization_HighCharts_Hierarchic.prototype.init = function (chartConfig, retrievedObservations, selectedComponentDimensions, multipleDimensions, oneElementDimensions, selectedMeasure, selectedAttributeUri) {
         this.originalConfiguration = {
             chartConfig: chartConfig,
             retrievedObservations: retrievedObservations,
             selectedComponentDimensions: selectedComponentDimensions,
             multipleDimensions: multipleDimensions,
             oneElementDimensions: oneElementDimensions,
-            selectedMeasureUri: selectedMeasureUri,
+            selectedMeasure: selectedMeasure,
             selectedAttributeUri: selectedAttributeUri
         };
         this.hierarchy = new DataCube_Hierarchy();
@@ -1089,7 +1089,7 @@ var CubeViz_Visualization_HighCharts_Hierarchic = (function (_super) {
         var selectedComponentDimensions = this.originalConfiguration.selectedComponentDimensions;
         var multipleDimensions = this.originalConfiguration.multipleDimensions;
         var oneElementDimensions = this.originalConfiguration.oneElementDimensions;
-        var selectedMeasureUri = this.originalConfiguration.selectedMeasureUri;
+        var selectedMeasure = this.originalConfiguration.selectedMeasure;
         var selectedAttributeUri = this.originalConfiguration.selectedAttributeUri;
         var forXAxis = null;
         var forSeries = null;
@@ -1144,6 +1144,7 @@ var CubeViz_Visualization_HighCharts_Hierarchic = (function (_super) {
             forXAxis = forSeries;
             forSeries = tmp;
         }
+        var selectedMeasureUri = selectedMeasure["http://purl.org/linked-data/cube#measure"];
         observation.initialize(retrievedObservations, selectedComponentDimensions, selectedMeasureUri);
         self.hierarchy.clear();
         self.hierarchy.load(observation.getAxesElements(forXAxis), "x");
@@ -1286,7 +1287,6 @@ var CubeViz_Visualization_HighCharts_Hierarchic = (function (_super) {
                 if(false === _.isUndefined(seriesObservation[selectedMeasureUri])) {
                     obj.data.push({
                         y: parseFloat(seriesObservation[selectedMeasureUri]),
-                        cv_chart: self,
                         xAxisElement: xAxisElement,
                         seriesElement: seriesElement
                     });
@@ -5504,6 +5504,7 @@ var View_IndexAction_Visualization = (function (_super) {
             case 'HighCharts': {
                 if(false === _.isUndefined(this.app._.generatedVisualization)) {
                     try  {
+                        this.app._.generatedVisualization._cubeviz_configuration.onDestroy();
                         this.app._.generatedVisualization.destroy();
                     } catch (ex) {
                         if(false === _.isUndefined(console) && false === _.isUndefined(console.log)) {
@@ -5654,7 +5655,7 @@ var View_IndexAction_VisualizationSelector = (function (_super) {
         var self = this;
 
         this.app._.ui.visualizationSettings[this.app._.ui.visualization.className] = CubeViz_Visualization_Controller.updateVisualizationSettings($(".cubeviz-visualizationselector-menuItemValue"), this.app._.ui.visualizationSettings[this.app._.ui.visualization.className], fromChartConfig.defaultConfig);
-        this.app._.backend.uiHash = JSON.stringify(this.app._.ui);
+        this.app._.backend.uiHash = CryptoJS.MD5(JSON.stringify(this.app._.ui)) + "";
         CubeViz_ConfigurationLink.saveUI(this.app._.backend.url, this.app._.backend.serviceUrl, this.app._.backend.modelUrl, this.app._.backend.uiHash, this.app._.ui, function () {
             self.triggerGlobalEvent("onReRender_visualization");
         });

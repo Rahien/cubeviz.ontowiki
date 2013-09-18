@@ -1102,7 +1102,7 @@ class CubevizController extends OntoWiki_Controller_Component
         $configuration = new CubeViz_ConfigurationLink(
             $this->_owApp->selectedModel, $this->_titleHelperLimit
         );
-                
+
         $configuration->write($stringifiedContent, $hash);
         
         // send back generated hash

@@ -1,5 +1,5 @@
 function chartClickHandler() {
-    var cv_chart = this.cv_chart;
+    var cv_chart = this.series.chart._cubeviz_configuration;
 
     if(cv_chart.canDrillX(this.xAxisElement)){
 	cv_chart.chartConfig.xRoot = this.xAxisElement.self.__cv_uri;
@@ -47,14 +47,14 @@ class CubeViz_Visualization_HighCharts_Hierarchic extends CubeViz_Visualization_
      */
     public init (chartConfig:any, retrievedObservations:any[], 
         selectedComponentDimensions:any, multipleDimensions:any[],
-        oneElementDimensions:any[], selectedMeasureUri:string,
+        oneElementDimensions:any[], selectedMeasure:string,
         selectedAttributeUri:string) 
         : CubeViz_Visualization_HighCharts_Chart 
     {  
 	this.originalConfiguration = {
 	    chartConfig:chartConfig, retrievedObservations:retrievedObservations, 
             selectedComponentDimensions:selectedComponentDimensions, multipleDimensions:multipleDimensions,
-            oneElementDimensions:oneElementDimensions, selectedMeasureUri:selectedMeasureUri,
+            oneElementDimensions:oneElementDimensions, selectedMeasure:selectedMeasure,
             selectedAttributeUri:selectedAttributeUri
 	};
 
@@ -75,7 +75,7 @@ class CubeViz_Visualization_HighCharts_Hierarchic extends CubeViz_Visualization_
         var selectedComponentDimensions:any = this.originalConfiguration.selectedComponentDimensions;
 	var multipleDimensions:any = this.originalConfiguration.multipleDimensions;
 	var oneElementDimensions:any = this.originalConfiguration.oneElementDimensions;
-	var selectedMeasureUri:any = this.originalConfiguration.selectedMeasureUri;
+	var selectedMeasure:any = this.originalConfiguration.selectedMeasure;
 	var selectedAttributeUri:any = this.originalConfiguration.selectedAttributeUri;
 
         var forXAxis = null,
@@ -154,7 +154,8 @@ class CubeViz_Visualization_HighCharts_Hierarchic extends CubeViz_Visualization_
         
         // initializing observation handling instance with given elements
         // after init, sorting the x axis elements ascending
-        observation.initialize(retrievedObservations, selectedComponentDimensions, selectedMeasureUri);
+	var selectedMeasureUri =  selectedMeasure["http://purl.org/linked-data/cube#measure"];
+        observation.initialize(retrievedObservations, selectedComponentDimensions,selectedMeasureUri);
 
 	self.hierarchy.clear();
 	self.hierarchy.load(observation.getAxesElements(forXAxis),"x");
@@ -396,7 +397,7 @@ class CubeViz_Visualization_HighCharts_Hierarchic extends CubeViz_Visualization_
                 
                 if(false === _.isUndefined(seriesObservation[selectedMeasureUri])) {
                     obj.data.push ({y:parseFloat(seriesObservation[selectedMeasureUri]),
-				    cv_chart: self,
+				    //cv_chart: self,
 				    xAxisElement: xAxisElement,
 				    seriesElement: seriesElement});
                 } else {
