@@ -54,7 +54,7 @@ class DataCube_Hierarchy
 		    self.hierarchyTopDown[singleParent][elementUri] = element;
 		}
 	    }else{
-		roots.push(elementUri);
+		roots.push(element);
 	    }
 	});
 
@@ -78,7 +78,7 @@ class DataCube_Hierarchy
 	}
 
 	var list = [];
-	var children = this.hierarchyTopDown[(element.self || element).__cv_uri];
+	var children = this.hierarchyTopDown[((element.self || element).__cv_uri) || element];
 	if(!children){
 	    children = {};
 	}
@@ -92,7 +92,7 @@ class DataCube_Hierarchy
     public getParent(element:any) : any {
 	return this.getParentByUri(element?(element.self || element).__cv_uri:element);
     };
-    
+        
     //* uses the uri of the element to look up its parent
     public getParentByUri(elementUri:string) : any {
 	if(!elementUri){
@@ -101,8 +101,17 @@ class DataCube_Hierarchy
 	return this.hierarchyBottomUp[elementUri];
     };
 
+    //* whether or not the hierarchy contains the element
+    public containsElement(element:any) :bool {
+	var elementUri=element?(element.self || element).__cv_uri:element;
+	return !!(this.hierarchyBottomUp[elementUri] || this.hierarchyTopDown[elementUri]);
+    };
+
     //* returns a div holding a label for the element that expresses the hierarchy
     public htmlElementLabel(element:any) :string {
+	if(!this.containsElement(element)){
+	    return null;
+	}
 	var s = "<div>"+(element.self || element).__cv_niceLabel+"</div>";
 	var current = element;
 	var parent;
@@ -123,5 +132,41 @@ class DataCube_Hierarchy
 	    current = parent;
 	}
 	return s;
+    }
+
+    //* returns all root nodes that have been loaded into the hierarchy
+    public getRootNodes() : any {
+	var roots=[];
+	for(var prop in this.topNodes){
+	    for(var i=0, root; root=this.topNodes[prop][i]; i++){
+		roots.push(root);
+	    }
+	}
+	return roots;
+    }
+
+    //* returns the elements that are descendants of the given node and that are #level steps away from the target. If targetElement is null, takes all root nodes
+    public getElementsOnLevel(targetElement:any, level:number){
+	level = Math.max(1,level);
+
+	var currentLevel = 0;	
+	var descendants = [targetElement];
+	if(!targetElement){
+	    descendants = this.getRootNodes();
+	    currentLevel = 1; 
+	}
+
+	while (currentLevel < level){
+	    var newDescendants = [];
+	    for(var i=0, child; child=descendants[i]; i++){
+		var children = this.getChildren(child);
+		for(var j=0, toAdd; toAdd=children[j]; j++){
+		    newDescendants.push(toAdd);
+		}
+	    }
+	    descendants= newDescendants;
+	    currentLevel++;
+	}
+	return descendants;
     }
 }

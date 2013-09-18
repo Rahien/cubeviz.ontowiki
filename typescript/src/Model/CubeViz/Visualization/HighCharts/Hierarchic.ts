@@ -1,13 +1,16 @@
 function chartClickHandler() {
     var cv_chart = this.series.chart._cubeviz_configuration;
-
-    if(cv_chart.canDrillX(this.xAxisElement)){
-	cv_chart.chartConfig.xRoot = this.xAxisElement.self.__cv_uri;
-    }
-    if(cv_chart.canDrillY(this.seriesElement)){
-	cv_chart.chartConfig.yRoot = this.seriesElement.self.__cv_uri;
-    }
     
+    if(cv_chart.drillMode == "by-level"){
+	cv_chart.increaseLevel();
+    }else{
+	if(cv_chart.canDrillX(this.xAxisElement)){
+	    cv_chart.chartConfig.xRoot = this.xAxisElement;
+	}
+	if(cv_chart.canDrillY(this.seriesElement)){
+	    cv_chart.chartConfig.yRoot = this.seriesElement;
+	}
+    }
     cv_chart.rerender();
 };
 
@@ -24,10 +27,18 @@ class CubeViz_Visualization_HighCharts_Hierarchic extends CubeViz_Visualization_
     public hierarchyControls:any;
     //* the type of drilling used, can be both, x or y
     public drillType:string;
+    //* the mode of drilling used, can be by-child or by-level
+    public drillMode:string;
+    //* the levels that should be shown when the drilling mode is set to 'by level', has the form {x:int, y:int}
+    public levels:any;
+    //* cache of the current elements on the currently selected level of this object
+    public levelElements:any;
     //* the current Highcharts visualization that is being used. Remembered so the chart configuration has control over when to re-render the visualization
     public currentVisualization:any;
-    //* the hierarchy for this visualization
-    public hierarchy:any;
+    //* the hierarchy for this visualization's X dimension
+    public hierarchyX:any;
+    //* the hierarchy for this visualization's Y dimension
+    public hierarchyY:any;
     //* whether or not the chart should only show the bottom elements. This value has precedence over all other properties influencing the hierarchy (like top nodes)
     public bottomOnly:bool;
 
@@ -58,9 +69,12 @@ class CubeViz_Visualization_HighCharts_Hierarchic extends CubeViz_Visualization_
             selectedAttributeUri:selectedAttributeUri
 	};
 
-	this.hierarchy = new DataCube_Hierarchy ();
+	this.hierarchyX = new DataCube_Hierarchy ();
+	this.hierarchyY = new DataCube_Hierarchy ();
 	this.bottomOnly = false;
 	this.drillType = "both";
+	this.drillMode = "by-child";
+	this.resetLevels();
 	
 	this.updateConfiguration();
 
@@ -157,9 +171,10 @@ class CubeViz_Visualization_HighCharts_Hierarchic extends CubeViz_Visualization_
 	var selectedMeasureUri =  selectedMeasure["http://purl.org/linked-data/cube#measure"];
         observation.initialize(retrievedObservations, selectedComponentDimensions,selectedMeasureUri);
 
-	self.hierarchy.clear();
-	self.hierarchy.load(observation.getAxesElements(forXAxis),"x");
-	self.hierarchy.load(observation.getAxesElements(forSeries), "y");
+	self.hierarchyX.clear();
+	self.hierarchyY.clear();
+	self.hierarchyX.load(observation.getAxesElements(forXAxis),"x");
+	self.hierarchyY.load(observation.getAxesElements(forSeries), "y");
         
         /**
          * Check if there are exactly one or two multiple dimensions
@@ -285,25 +300,50 @@ class CubeViz_Visualization_HighCharts_Hierarchic extends CubeViz_Visualization_
 	this.chartConfig.yAxis.labels={useHTML:true};
     };
 
+    //* returns the elements that should be shown on the current level, elements are fetched lazily and should be invalidated upon level change
+    public getElementsOnCurrentLevel() : any {
+	if(!this.levelElements){
+	    this.levelElements={};
+	    this.levelElements.x=this.hierarchyX.getElementsOnLevel(this.chartConfig.xRoot,Math.max(this.levels.x,1));
+	    this.levelElements.y=this.hierarchyY.getElementsOnLevel(this.chartConfig.yRoot,Math.max(this.levels.y,1));
+	}
+	return this.levelElements;
+    };
+
+    public invalidateLevelCache() : any {
+	this.levelElements=null;	
+    };
+
     //* whether or not the given element should be hidden
     public shouldHideElement(element:any, seriesElement:bool) :bool {
+	var hierarchy = seriesElement?this.hierarchyY:this.hierarchyX;
 	if(this.bottomOnly){
-	    return !element || this.hierarchy.getChildren(element).length !=  0;
+	    return !element || hierarchy.getChildren(element).length !=  0;
 	}
 
 	var reference = null;
 	if(seriesElement){
-	    reference = this.chartConfig.yRoot
+	    reference = this.getElementUri(this.chartConfig.yRoot);
 	}else{
-	    reference = this.chartConfig.xRoot
+	    reference = this.getElementUri(this.chartConfig.xRoot);
 	}
 
-	var drillValue = element.self[this.hierarchy.drillingPredicate];
-	if(!drillValue || typeof drillValue == "string"){
-	    return reference != drillValue;
+	if(this.drillMode== "by-child"){
+	    var drillValue = element.self[hierarchy.drillingPredicate];
+	    if(!drillValue || typeof drillValue == "string"){
+		return reference != drillValue;
+	    }else{
+		for(var prop in drillValue){
+		    if(reference == drillValue[prop]){
+			return false;
+		    }
+		}
+		return true;
+	    }
 	}else{
-	    for(var prop in drillValue){
-		if(reference == drillValue[prop]){
+	    var targets = this.getElementsOnCurrentLevel()[seriesElement?"y":"x"];
+	    for(var i=0, target; target= targets[i]; i++){
+		if(target == element){
 		    return false;
 		}
 	    }
@@ -313,7 +353,7 @@ class CubeViz_Visualization_HighCharts_Hierarchic extends CubeViz_Visualization_
 
     //* fetches the correct label for the given component element. Uses html to represent the label!
     public fetchLabel(element:any) : string {
-	return this.hierarchy.htmlElementLabel(element);
+	return this.hierarchyX.htmlElementLabel(element) || this.hierarchyY.htmlElementLabel(element);
     };
 
     public handleTwoDimensions(observation:any, forXAxis:any, selectedComponentDimensions:any, forSeries:any, selectedAttributeUri:any, selectedMeasureUri:any) : void {
@@ -429,6 +469,8 @@ class CubeViz_Visualization_HighCharts_Hierarchic extends CubeViz_Visualization_
 	visualization.xAxis[0].setCategories(this.chartConfig.xAxis.categories);
 	
 	visualization.redraw();
+
+	this.updatePositionLabels();
     };
 
     //* abstract function, called when visual rendering has completed. Allows the chart to handle any post processing steps, also keeps the visualization around for further processing
@@ -440,21 +482,32 @@ class CubeViz_Visualization_HighCharts_Hierarchic extends CubeViz_Visualization_
 	//* create the hierarchy controls
 	$("#cubeviz-index-legend").before('<div class="hierarchyControls">'+
 					  '<div><strong class="hierarchy-drill-by"> Drill by </strong>'+
-					  '<form>'+
-					   '<input type="radio" name="drilling" value="x"><span>x-axis</span>' +
-					   '<input type="radio" name="drilling" value="y"><span>y-axis</span>' +
-					   '<input type="radio" name="drilling" value="both" checked=true><span>both axes</span>' +
-					  '</form></div><button type="button">Move Up</button><span class="toggleBottomLevels"><span>Show all bottom levels</span><input type="checkbox"></span></div>');
+					  '<select><option value="x">x-axis</option><option value="y">y-axis</option><option value="both" selected=true>both</option></select>' +
+					  '</div><div><strong class="hierarchy-drill-mode"> Drill mode </strong>' +
+					  '<select><option value="by-child">by child</option><option value="by-level">by level</option></select>' +
+					  '</div><div><strong class="hc-title">Other controls</strong><button type="button">Move Up</button>'+
+					  '<span class="toggleBottomLevels"><span>Show all bottom levels</span><input type="checkbox"></span></div>' +
+					  '<div class="hc-position"><strong class="hc-title">Position in hierarchy</strong>'+
+					  '<div><span>x-root:</span><span>unknown</span><span>level:</span><span>unknown</span></div>'+
+					  '<div><span>y-root:</span><span>unknown</span><span>level:</span><span>unknown</span></div></div>'+
+					  '</div>');
 	this.hierarchyControls = $("#cubeviz-index-legend").prev()[0];
-	var button = this.hierarchyControls.children[1];
-	var checkbox = this.hierarchyControls.children[2].children[1];
-	var form = this.hierarchyControls.children[0].children[1];
+	var button = this.hierarchyControls.children[2].children[1];
+	var checkbox = this.hierarchyControls.children[2].children[2].children[1];
+	var selectType = this.hierarchyControls.children[0].children[1];
+	var selectMode = this.hierarchyControls.children[1].children[1];
 	var self = this;
 	$(button).click(function(){
 	    self.moveUp();
 	});
-	$(form).find("input").change(function(){
+	$(selectType).change(function(){
 	    self.drillType = $(this).val();
+	});
+	$(selectMode).change(function(){
+	    self.invalidateLevelCache()
+	    self.drillMode = $(this).val();
+	    self.resetLevels();
+	    self.rerender();
 	});
 	$(checkbox).change(function(){
 	    if(this.checked){
@@ -463,17 +516,34 @@ class CubeViz_Visualization_HighCharts_Hierarchic extends CubeViz_Visualization_
 		self.setBottomOnly(false);
 	    } 
 	});
+	this.updatePositionLabels();
+    };
+    
+    //* updates the position labels in the html so the user can 
+    public updatePositionLabels() : void {
+	var xDiv = this.hierarchyControls.children[3].children[1];
+	var yDiv = this.hierarchyControls.children[3].children[2];
+	
+	$(xDiv.children[1]).text(this.chartConfig.xRoot?this.hierarchyX.stringElementLabel(this.chartConfig.xRoot):"top");
+	$(xDiv.children[3]).text(this.levels.x);
+
+	$(yDiv.children[1]).text(this.chartConfig.yRoot?this.hierarchyY.stringElementLabel(this.chartConfig.yRoot):"top");
+	$(yDiv.children[3]).text(this.levels.y);
     };
 
     //* moves up in the hierarchy, depending on the setting of the drillType
     public moveUp() : any {
-	if(this.canRollUpX()){
-	    var parentX=this.hierarchy.getParentByUri(this.chartConfig.xRoot);
-	    this.chartConfig.xRoot = parentX?parentX.self.__cv_uri:null;
-	}
-	if(this.canRollUpY()){
-	    var parentY=this.hierarchy.getParentByUri(this.chartConfig.yRoot);
-	    this.chartConfig.yRoot = parentY?parentY.self.__cv_uri:null;
+	if(this.drillMode=="by-level"){
+	    this.decreaseLevel();
+	}else{
+	    if(this.canRollUpX()){
+		var parentX=this.hierarchyX.getParent(this.chartConfig.xRoot);
+		this.chartConfig.xRoot = parentX?parentX:null;
+	    }
+	    if(this.canRollUpY()){
+		var parentY=this.hierarchyY.getParent(this.chartConfig.yRoot);
+		this.chartConfig.yRoot = parentY?parentY:null;
+	    }
 	}
 
 	this.rerender();
@@ -494,12 +564,12 @@ class CubeViz_Visualization_HighCharts_Hierarchic extends CubeViz_Visualization_
     };
 
     public canDrillX(targetX) : bool {
-	return this.hierarchy.getChildren(targetX).length>0 && 
+	return this.hierarchyX.getChildren(targetX).length>0 && 
 	    (this.drillType == "both" || this.drillType == "x");
     };
 
     public canDrillY(targetY) : bool {
-	return this.hierarchy.getChildren(targetY).length>0 && 
+	return this.hierarchyY.getChildren(targetY).length>0 && 
 	    (this.drillType == "both" || this.drillType == "y");
     };
 
@@ -516,4 +586,32 @@ class CubeViz_Visualization_HighCharts_Hierarchic extends CubeViz_Visualization_
 	this.rerender();
     }
 
+    public resetLevels():any {
+	this.levels = {x:1, y:1};
+    }
+
+    public increaseLevel(): void {
+	if((this.drillType == "both" || this.drillType == "y") && 
+	   this.hierarchyY.getElementsOnLevel(this.chartConfig.yRoot,Math.max(this.levels.y+1,1)).length>0){
+	    this.levels.y=this.levels.y+1;
+	}
+	if((this.drillType == "both" || this.drillType == "x") && 
+	   this.hierarchyX.getElementsOnLevel(this.chartConfig.xRoot,Math.max(this.levels.x+1,1)).length>0){
+	    this.levels.x=this.levels.x+1;
+	}
+	this.invalidateLevelCache();
+    }
+
+    public decreaseLevel(): void {
+	if(this.drillType == "both" || this.drillType == "y"){
+	    this.levels.y=Math.max(1,this.levels.y-1);
+	}
+	if(this.drillType == "both" || this.drillType == "x"){
+	    this.levels.x=Math.max(1,this.levels.x-1);
+	}
+	this.invalidateLevelCache();
+    }
+    public getElementUri(element:any) : any {
+	return element?element.self.__cv_uri:element;
+    }
 }
