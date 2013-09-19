@@ -141,3 +141,7 @@
 .hierarchyControls .hc-position span:first-child, .hierarchyControls .hc-position span:nth-child(3) {
     font-weight: bold;
 }
+.hierarchyControls .hc-position button {
+    padding: 0; margin: 0; width: 1.5em; 
+    margin-right: 0.5em;
+}
