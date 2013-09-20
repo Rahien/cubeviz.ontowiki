@@ -476,7 +476,7 @@ class CubeViz_Visualization_HighCharts_Hierarchic extends CubeViz_Visualization_
 					  '</div>');
 	this.hierarchyControls = $("#cubeviz-index-legend").prev()[0];
 	var button = this.hierarchyControls.children[1].children[1];
-	var checkbox = this.hierarchyControls.children[2].children[2].children[1];
+	var checkbox = this.hierarchyControls.children[1].children[2].children[1];
 	var selectType = this.hierarchyControls.children[0].children[1];
 
 	var xDiv = this.hierarchyControls.children[2].children[1];

@@ -1336,7 +1336,7 @@ var CubeViz_Visualization_HighCharts_Hierarchic = (function (_super) {
         $("#cubeviz-index-legend").before('<div class="hierarchyControls">' + '<div><strong class="hierarchy-drill-by"> Drill by </strong>' + '<select><option value="x">x-axis</option><option value="y">y-axis</option><option value="both" selected=true>both</option></select>' + '</div><div><strong class="hc-title">Other controls</strong><button type="button">Move Up</button>' + '<span class="toggleBottomLevels"><span>Show all bottom levels</span><input type="checkbox"></span></div>' + '<div class="hc-position"><strong class="hc-title">Position in hierarchy</strong>' + '<div><span>x-root:</span><span>unknown</span><span>level:</span><button>-</button><span>unknown</span><button>+</button></div>' + '<div><span>y-root:</span><span>unknown</span><span>level:</span><button>-</button><span>unknown</span><button>+</button></div></div>' + '</div>');
         this.hierarchyControls = $("#cubeviz-index-legend").prev()[0];
         var button = this.hierarchyControls.children[1].children[1];
-        var checkbox = this.hierarchyControls.children[2].children[2].children[1];
+        var checkbox = this.hierarchyControls.children[1].children[2].children[1];
         var selectType = this.hierarchyControls.children[0].children[1];
         var xDiv = this.hierarchyControls.children[2].children[1];
         var yDiv = this.hierarchyControls.children[2].children[2];
