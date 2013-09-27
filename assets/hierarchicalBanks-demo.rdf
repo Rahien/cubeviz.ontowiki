@@ -1,0 +1,1608 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rdf:RDF
+	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+	xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+	xmlns:ns2="http://purl.org/linked-data/cube#"
+	xmlns:ns3="http://localhost/banks/cube/"
+	xmlns:skos="http://www.w3.org/2004/02/skos/core#" >
+  <rdf:Description rdf:about="http://localhost/banks/cube/obs/loans-to-non-financial/2012-T3">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/loans-to-non-financial" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/2012-T3" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">2.94333</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/loans-to-non-financial">
+    <rdfs:label>Loans to non-financial corporations</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/2012-T3">
+    <rdfs:label>Third Trimester of 2012</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/2013-T1">
+    <rdfs:label>First Trimester of 2013</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/2012-T2">
+    <rdfs:label>Second Trimester of 2012</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/2012-T1">
+    <rdfs:label>First Trimester of 2012</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/house-purchases">
+    <rdfs:label>Loans for house purchases</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/consumer-credit-and-other">
+    <rdfs:label>Consumer credit and other loans</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/obs/loans-to-non-financial/2012-T2">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/loans-to-non-financial" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/2012-T2" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">3.08833</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/obs/loans-to-non-financial/2012-T1">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/loans-to-non-financial" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/2012-T1" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">3.18</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/obs/loans-to-non-financial/2013-T1">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/loans-to-non-financial" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/2013-T1" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">2.84</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/obs/house-purchases/2012-T3">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/house-purchases" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/2012-T3" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">3.62417</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/obs/house-purchases/2012-T2">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/house-purchases" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/2012-T2" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">3.78083</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/obs/house-purchases/2012-T1">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/house-purchases" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/2012-T1" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">3.91333</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/obs/house-purchases/2013-T1">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/house-purchases" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/2013-T1" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">3.53167</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/obs/consumer-credit-and-other/2012-T3">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/consumer-credit-and-other" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/2012-T3" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">5.98583</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/obs/consumer-credit-and-other/2012-T2">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/consumer-credit-and-other" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/2012-T2" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">6.05667</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/obs/consumer-credit-and-other/2012-T1">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/consumer-credit-and-other" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/2012-T1" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">6.13333</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/obs/consumer-credit-and-other/2013-T1">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/consumer-credit-and-other" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/2013-T1" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">5.75833</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/LoanType">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#DimensionProperty" />
+    <rdfs:label>Loan Type</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/LoanType_CS">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#ComponentSpecification" />
+    <rdfs:label>Loan Type_CS</rdfs:label>
+    <ns2:dimension rdf:resource="http://localhost/banks/cube/LoanType" />
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/r4-c2">
+    <rdf:type rdf:resource="http://localhost/banks/cube/LoanType" />
+    <rdfs:label>Up to 1 year</rdfs:label>
+    <skos:broader rdf:resource="http://localhost/banks/cube/house-purchases" />
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/r4-c3">
+    <rdf:type rdf:resource="http://localhost/banks/cube/LoanType" />
+    <rdfs:label>Over 1 and up to 5 years</rdfs:label>
+    <skos:broader rdf:resource="http://localhost/banks/cube/house-purchases" />
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/r4-c4">
+    <rdf:type rdf:resource="http://localhost/banks/cube/LoanType" />
+    <rdfs:label>Over 5 years</rdfs:label>
+    <skos:broader rdf:resource="http://localhost/banks/cube/house-purchases" />
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/r4-c5">
+    <rdf:type rdf:resource="http://localhost/banks/cube/LoanType" />
+    <rdfs:label>Up to 1 year</rdfs:label>
+    <skos:broader rdf:resource="http://localhost/banks/cube/consumer-credit-and-other" />
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/r4-c6">
+    <rdf:type rdf:resource="http://localhost/banks/cube/LoanType" />
+    <rdfs:label>Over 1 and up to 5 years</rdfs:label>
+    <skos:broader rdf:resource="http://localhost/banks/cube/consumer-credit-and-other" />
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/r4-c7">
+    <rdf:type rdf:resource="http://localhost/banks/cube/LoanType" />
+    <rdfs:label>Over 5 years</rdfs:label>
+    <skos:broader rdf:resource="http://localhost/banks/cube/consumer-credit-and-other" />
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/r3-c8">
+    <rdf:type rdf:resource="http://localhost/banks/cube/LoanType" />
+    <rdfs:label>Up to 1 year</rdfs:label>
+    <skos:broader rdf:resource="http://localhost/banks/cube/loans-to-non-financial" />
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/r3-c9">
+    <rdf:type rdf:resource="http://localhost/banks/cube/LoanType" />
+    <rdfs:label>Over 1 and up to 5 years</rdfs:label>
+    <skos:broader rdf:resource="http://localhost/banks/cube/loans-to-non-financial" />
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/r3-c10">
+    <rdf:type rdf:resource="http://localhost/banks/cube/LoanType" />
+    <rdfs:label>Over 5 years</rdfs:label>
+    <skos:broader rdf:resource="http://localhost/banks/cube/loans-to-non-financial" />
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/Time">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#DimensionProperty" />
+    <rdfs:label>Time</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/Time_CS">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#ComponentSpecification" />
+    <rdfs:label>Time_CS</rdfs:label>
+    <ns2:dimension rdf:resource="http://localhost/banks/cube/Time" />
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/r5-c0">
+    <rdf:type rdf:resource="http://localhost/banks/cube/Time" />
+    <rdfs:label>2013-04-30</rdfs:label>
+    <skos:broader rdf:resource="http://localhost/banks/cube/2013-T1" />
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/r6-c0">
+    <rdf:type rdf:resource="http://localhost/banks/cube/Time" />
+    <rdfs:label>2013-03-31</rdfs:label>
+    <skos:broader rdf:resource="http://localhost/banks/cube/2013-T1" />
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/r7-c0">
+    <rdf:type rdf:resource="http://localhost/banks/cube/Time" />
+    <rdfs:label>2013-02-28</rdfs:label>
+    <skos:broader rdf:resource="http://localhost/banks/cube/2013-T1" />
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/r8-c0">
+    <rdf:type rdf:resource="http://localhost/banks/cube/Time" />
+    <rdfs:label>2013-01-31</rdfs:label>
+    <skos:broader rdf:resource="http://localhost/banks/cube/2013-T1" />
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/r9-c0">
+    <rdf:type rdf:resource="http://localhost/banks/cube/Time" />
+    <rdfs:label>2012-12-31</rdfs:label>
+    <skos:broader rdf:resource="http://localhost/banks/cube/2012-T3" />
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/r10-c0">
+    <rdf:type rdf:resource="http://localhost/banks/cube/Time" />
+    <rdfs:label>2012-11-30</rdfs:label>
+    <skos:broader rdf:resource="http://localhost/banks/cube/2012-T3" />
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/r11-c0">
+    <rdf:type rdf:resource="http://localhost/banks/cube/Time" />
+    <rdfs:label>2012-10-31</rdfs:label>
+    <skos:broader rdf:resource="http://localhost/banks/cube/2012-T3" />
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/r12-c0">
+    <rdf:type rdf:resource="http://localhost/banks/cube/Time" />
+    <rdfs:label>2012-09-30</rdfs:label>
+    <skos:broader rdf:resource="http://localhost/banks/cube/2012-T3" />
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/r13-c0">
+    <rdf:type rdf:resource="http://localhost/banks/cube/Time" />
+    <rdfs:label>2012-08-31</rdfs:label>
+    <skos:broader rdf:resource="http://localhost/banks/cube/2012-T2" />
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/r14-c0">
+    <rdf:type rdf:resource="http://localhost/banks/cube/Time" />
+    <rdfs:label>2012-07-31</rdfs:label>
+    <skos:broader rdf:resource="http://localhost/banks/cube/2012-T2" />
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/r15-c0">
+    <rdf:type rdf:resource="http://localhost/banks/cube/Time" />
+    <rdfs:label>2012-06-30</rdfs:label>
+    <skos:broader rdf:resource="http://localhost/banks/cube/2012-T2" />
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/r16-c0">
+    <rdf:type rdf:resource="http://localhost/banks/cube/Time" />
+    <rdfs:label>2012-05-31</rdfs:label>
+    <skos:broader rdf:resource="http://localhost/banks/cube/2012-T2" />
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/r17-c0">
+    <rdf:type rdf:resource="http://localhost/banks/cube/Time" />
+    <rdfs:label>2012-04-30</rdfs:label>
+    <skos:broader rdf:resource="http://localhost/banks/cube/2012-T1" />
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/bank-interest-rates">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#DataSet" />
+    <rdfs:label>bank-interest-rates</rdfs:label>
+    <ns2:structure rdf:resource="http://localhost/banks/cube/banks-dsd" />
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/banks-dsd">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#DataStructureDefinition" />
+    <ns2:component rdf:resource="http://localhost/banks/cube/Time_CS" />
+    <ns2:component rdf:resource="http://localhost/banks/cube/LoanType_CS" />
+    <ns2:component rdf:resource="http://localhost/banks/cube/interest-rates_CS" />
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/interest-rates">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#MeasureProperty" />
+    <rdfs:label>interest-rates</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/interest-rates_CS">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#ComponentSpecification" />
+    <rdfs:label>interest-rates_CS</rdfs:label>
+    <ns2:measure rdf:resource="http://localhost/banks/cube/interest-rates" />
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c2-r5">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c2" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r5-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">3.25</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c3-r5">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c3" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r5-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">3.61</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c4-r5">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c4" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r5-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">3.69</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c5-r5">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c5" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r5-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">5.8</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c6-r5">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c6" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r5-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">6.59</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c7-r5">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c7" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r5-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">4.61</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c8-r5">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r3-c8" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r5-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">2.49</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c9-r5">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r3-c9" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r5-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">2.31</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c10-r5">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r3-c10" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r5-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">3.66</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c2-r6">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c2" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r6-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">3.32</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c3-r6">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c3" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r6-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">3.63</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c4-r6">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c4" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r6-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">3.69</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c5-r6">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c5" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r6-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">6.18</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c6-r6">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c6" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r6-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">6.58</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c7-r6">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c7" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r6-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">4.63</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c8-r6">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r3-c8" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r6-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">2.59</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c9-r6">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r3-c9" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r6-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">2.32</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c10-r6">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r3-c10" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r6-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">3.69</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c2-r7">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c2" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r7-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">3.32</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c3-r7">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c3" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r7-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">3.53</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c4-r7">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c4" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r7-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">3.71</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c5-r7">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c5" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r7-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">6.07</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c6-r7">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c6" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r7-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">6.63</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c7-r7">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c7" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r7-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">4.65</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c8-r7">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r3-c8" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r7-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">2.46</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c9-r7">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r3-c9" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r7-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">2.3</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c10-r7">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r3-c10" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r7-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">3.71</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c2-r8">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c2" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r8-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">3.34</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c3-r8">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c3" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r8-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">3.56</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c4-r8">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c4" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r8-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">3.73</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c5-r8">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c5" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r8-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">6.06</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c6-r8">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c6" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r8-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">6.65</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c7-r8">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c7" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r8-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">4.65</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c8-r8">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r3-c8" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r8-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">2.53</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c9-r8">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r3-c9" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r8-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">2.3</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c10-r8">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r3-c10" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r8-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">3.72</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c2-r9">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c2" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r9-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">3.38</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c3-r9">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c3" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r9-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">3.56</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c4-r9">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c4" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r9-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">3.76</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c5-r9">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c5" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r9-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">6.38</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c6-r9">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c6" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r9-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">6.64</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c7-r9">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c7" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r9-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">4.67</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c8-r9">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r3-c8" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r9-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">2.55</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c9-r9">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r3-c9" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r9-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">2.3</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c10-r9">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r3-c10" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r9-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">3.73</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c2-r10">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c2" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r10-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">3.43</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c3-r10">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c3" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r10-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">3.57</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c4-r10">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c4" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r10-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">3.79</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c5-r10">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c5" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r10-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">6.44</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c6-r10">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c6" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r10-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">6.68</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c7-r10">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c7" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r10-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">4.73</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c8-r10">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r3-c8" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r10-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">2.57</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c9-r10">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r3-c9" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r10-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">2.33</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c10-r10">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r3-c10" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r10-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">3.79</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c2-r11">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c2" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r11-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">3.48</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c3-r11">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c3" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r11-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">3.62</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c4-r11">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c4" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r11-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">3.84</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c5-r11">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c5" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r11-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">6.61</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c6-r11">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c6" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r11-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">6.72</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c7-r11">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c7" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r11-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">4.73</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c8-r11">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r3-c8" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r11-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">2.83</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c9-r11">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r3-c9" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r11-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">2.34</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c10-r11">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r3-c10" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r11-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">3.81</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c2-r12">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c2" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r12-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">3.54</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c3-r12">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c3" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r12-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">3.65</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c4-r12">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c4" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r12-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">3.87</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c5-r12">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c5" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r12-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">6.73</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c6-r12">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c6" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r12-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">6.74</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c7-r12">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c7" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r12-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">4.76</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c8-r12">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r3-c8" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r12-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">2.81</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c9-r12">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r3-c9" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r12-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">2.4</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c10-r12">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r3-c10" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r12-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">3.86</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c2-r13">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c2" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r13-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">3.58</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c3-r13">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c3" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r13-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">3.66</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c4-r13">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c4" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r13-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">3.9</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c5-r13">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c5" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r13-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">6.69</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c6-r13">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c6" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r13-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">6.73</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c7-r13">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c7" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r13-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">4.79</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c8-r13">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r3-c8" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r13-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">2.73</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c9-r13">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r3-c9" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r13-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">2.5</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c10-r13">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r3-c10" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r13-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">3.89</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c2-r14">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c2" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r14-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">3.64</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c3-r14">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c3" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r14-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">3.67</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c4-r14">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c4" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r14-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">3.92</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c5-r14">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c5" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r14-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">6.54</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c6-r14">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c6" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r14-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">6.72</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c7-r14">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c7" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r14-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">4.81</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c8-r14">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r3-c8" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r14-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">2.69</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c9-r14">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r3-c9" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r14-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">2.52</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c10-r14">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r3-c10" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r14-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">3.92</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c2-r15">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c2" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r15-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">3.7</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c3-r15">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c3" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r15-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">3.75</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c4-r15">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c4" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r15-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">3.97</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c5-r15">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c5" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r15-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">6.55</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c6-r15">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c6" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r15-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">6.79</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c7-r15">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c7" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r15-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">4.85</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c8-r15">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r3-c8" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r15-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">2.82</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c9-r15">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r3-c9" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r15-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">2.61</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c10-r15">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r3-c10" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r15-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">3.97</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c2-r16">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c2" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r16-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">3.77</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c3-r16">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c3" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r16-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">3.81</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c4-r16">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c4" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r16-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">4</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c5-r16">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c5" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r16-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">6.55</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c6-r16">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c6" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r16-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">6.79</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c7-r16">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c7" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r16-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">4.87</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c8-r16">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r3-c8" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r16-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">2.73</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c9-r16">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r3-c9" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r16-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">2.68</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c10-r16">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r3-c10" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r16-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">4</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c2-r17">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c2" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r17-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">3.86</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c3-r17">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c3" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r17-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">3.85</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c4-r17">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c4" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r17-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">4.03</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c5-r17">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c5" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r17-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">6.72</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c6-r17">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c6" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r17-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">6.79</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c7-r17">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c7" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r17-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">4.89</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c8-r17">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r3-c8" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r17-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">2.71</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c9-r17">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r3-c9" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r17-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">2.76</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/c10-r17">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r3-c10" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r17-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">4.07</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology" />
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/obs/loans-to-non-financial/r10-c0">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/loans-to-non-financial" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r10-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">2.89667</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/obs/loans-to-non-financial/r11-c0">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/loans-to-non-financial" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r11-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">2.99333</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/obs/loans-to-non-financial/r12-c0">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/loans-to-non-financial" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r12-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">3.02333</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/obs/loans-to-non-financial/r13-c0">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/loans-to-non-financial" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r13-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">3.04</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/obs/loans-to-non-financial/r14-c0">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/loans-to-non-financial" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r14-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">3.04333</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/obs/loans-to-non-financial/r15-c0">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/loans-to-non-financial" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r15-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">3.13333</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/obs/loans-to-non-financial/r16-c0">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/loans-to-non-financial" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r16-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">3.13667</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/obs/loans-to-non-financial/r17-c0">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/loans-to-non-financial" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r17-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">3.18</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/obs/loans-to-non-financial/r5-c0">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/loans-to-non-financial" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r5-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">2.82</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/obs/loans-to-non-financial/r6-c0">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/loans-to-non-financial" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r6-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">2.86667</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/obs/loans-to-non-financial/r7-c0">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/loans-to-non-financial" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r7-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">2.82333</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/obs/loans-to-non-financial/r8-c0">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/loans-to-non-financial" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r8-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">2.85</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/obs/loans-to-non-financial/r9-c0">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/loans-to-non-financial" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r9-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">2.86</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/obs/house-purchases/r10-c0">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/house-purchases" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r10-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">3.59667</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/obs/house-purchases/r11-c0">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/house-purchases" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r11-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">3.64667</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/obs/house-purchases/r12-c0">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/house-purchases" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r12-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">3.68667</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/obs/house-purchases/r13-c0">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/house-purchases" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r13-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">3.71333</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/obs/house-purchases/r14-c0">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/house-purchases" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r14-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">3.74333</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/obs/house-purchases/r15-c0">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/house-purchases" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r15-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">3.80667</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/obs/house-purchases/r16-c0">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/house-purchases" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r16-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">3.86</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/obs/house-purchases/r17-c0">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/house-purchases" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r17-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">3.91333</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/obs/house-purchases/r5-c0">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/house-purchases" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r5-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">3.51667</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/obs/house-purchases/r6-c0">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/house-purchases" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r6-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">3.54667</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/obs/house-purchases/r7-c0">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/house-purchases" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r7-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">3.52</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/obs/house-purchases/r8-c0">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/house-purchases" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r8-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">3.54333</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/obs/house-purchases/r9-c0">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/house-purchases" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r9-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">3.56667</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/obs/consumer-credit-and-other/r10-c0">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/consumer-credit-and-other" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r10-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">5.95</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/obs/consumer-credit-and-other/r11-c0">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/consumer-credit-and-other" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r11-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">6.02</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/obs/consumer-credit-and-other/r12-c0">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/consumer-credit-and-other" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r12-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">6.07667</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/obs/consumer-credit-and-other/r13-c0">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/consumer-credit-and-other" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r13-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">6.07</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/obs/consumer-credit-and-other/r14-c0">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/consumer-credit-and-other" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r14-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">6.02333</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/obs/consumer-credit-and-other/r15-c0">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/consumer-credit-and-other" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r15-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">6.06333</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/obs/consumer-credit-and-other/r16-c0">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/consumer-credit-and-other" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r16-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">6.07</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/obs/consumer-credit-and-other/r17-c0">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/consumer-credit-and-other" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r17-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">6.13333</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/obs/consumer-credit-and-other/r5-c0">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/consumer-credit-and-other" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r5-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">5.66667</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/obs/consumer-credit-and-other/r6-c0">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/consumer-credit-and-other" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r6-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">5.79667</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/obs/consumer-credit-and-other/r7-c0">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/consumer-credit-and-other" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r7-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">5.78333</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/obs/consumer-credit-and-other/r8-c0">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/consumer-credit-and-other" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r8-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">5.78667</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/obs/consumer-credit-and-other/r9-c0">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/consumer-credit-and-other" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/r9-c0" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">5.89667</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/obs/r3-c10/2012-T3">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r3-c10" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/2012-T3" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">3.7975</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/obs/r3-c10/2012-T2">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r3-c10" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/2012-T2" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">3.945</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/obs/r3-c10/2012-T1">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r3-c10" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/2012-T1" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">4.07</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/obs/r3-c10/2013-T1">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r3-c10" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/2013-T1" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">3.695</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/obs/r4-c2/2012-T3">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c2" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/2012-T3" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">3.4575</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/obs/r4-c2/2012-T2">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c2" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/2012-T2" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">3.6725</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/obs/r4-c2/2012-T1">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c2" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/2012-T1" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">3.86</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/obs/r4-c2/2013-T1">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c2" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/2013-T1" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">3.3075</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/obs/r4-c3/2012-T3">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c3" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/2012-T3" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">3.6</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/obs/r4-c3/2012-T2">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c3" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/2012-T2" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">3.7225</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/obs/r4-c3/2012-T1">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c3" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/2012-T1" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">3.85</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/obs/r4-c3/2013-T1">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c3" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/2013-T1" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">3.5825</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/obs/r4-c4/2012-T3">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c4" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/2012-T3" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">3.815</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/obs/r4-c4/2012-T2">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c4" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/2012-T2" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">3.9475</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/obs/r4-c4/2012-T1">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c4" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/2012-T1" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">4.03</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/obs/r4-c4/2013-T1">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c4" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/2013-T1" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">3.705</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/obs/r4-c5/2012-T3">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c5" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/2012-T3" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">6.54</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/obs/r4-c5/2012-T2">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c5" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/2012-T2" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">6.5825</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/obs/r4-c5/2012-T1">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c5" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/2012-T1" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">6.72</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/obs/r4-c5/2013-T1">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c5" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/2013-T1" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">6.0275</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/obs/r4-c6/2012-T3">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c6" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/2012-T3" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">6.695</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/obs/r4-c6/2012-T2">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c6" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/2012-T2" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">6.7575</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/obs/r4-c6/2012-T1">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c6" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/2012-T1" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">6.79</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/obs/r4-c6/2013-T1">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c6" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/2013-T1" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">6.6125</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/obs/r4-c7/2012-T3">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c7" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/2012-T3" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">4.7225</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/obs/r4-c7/2012-T2">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c7" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/2012-T2" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">4.83</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/obs/r4-c7/2012-T1">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c7" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/2012-T1" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">4.89</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/obs/r4-c7/2013-T1">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r4-c7" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/2013-T1" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">4.635</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/obs/r3-c8/2012-T3">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r3-c8" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/2012-T3" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">2.69</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/obs/r3-c8/2012-T2">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r3-c8" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/2012-T2" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">2.7425</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/obs/r3-c8/2012-T1">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r3-c8" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/2012-T1" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">2.71</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/obs/r3-c8/2013-T1">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r3-c8" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/2013-T1" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">2.5175</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/obs/r3-c9/2012-T3">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r3-c9" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/2012-T3" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">2.3425</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/obs/r3-c9/2012-T2">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r3-c9" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/2012-T2" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">2.5775</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/obs/r3-c9/2012-T1">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r3-c9" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/2012-T1" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">2.76</ns3:interest-rates>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost/banks/cube/obs/r3-c9/2013-T1">
+    <rdf:type rdf:resource="http://purl.org/linked-data/cube#Observation" />
+    <ns2:dataSet rdf:resource="http://localhost/banks/cube/bank-interest-rates" />
+    <ns3:LoanType rdf:resource="http://localhost/banks/cube/r3-c9" />
+    <ns3:Time rdf:resource="http://localhost/banks/cube/2013-T1" />
+    <ns3:interest-rates rdf:datatype="http://www.w3.org/2001/XMLSchema#float">2.3075</ns3:interest-rates>
+  </rdf:Description>
+</rdf:RDF>
