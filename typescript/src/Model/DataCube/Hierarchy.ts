@@ -1,10 +1,12 @@
+declare var CubeViz_HierarchyConfig:any;
+
 /**
  * A hierarchy of elements. Can hold multiple root nodes
  */
 class DataCube_Hierarchy 
 {
     //* predicate used for drilling
-    public drillingPredicate:string;
+    public drillingPredicate:any;
     //* the hierarchy information, holding the child elements for every parent uri
     public hierarchyTopDown:any;
     //* the hierarchy information, holding the parent element for every child uri
@@ -12,11 +14,11 @@ class DataCube_Hierarchy
     //* top nodes of the hierarchy for every hierarchy that has been loaded, format: {name: []}
     public topNodes:any;
 
-    constructor(drillingPredicate?:string) {
-	if(!drillingPredicate){
-	    drillingPredicate = "http://www.w3.org/2004/02/skos/core#broader";
+    constructor(drillingPredicateUri?:string) {
+	this.drillingPredicate = CubeViz_HierarchyConfig.predicatesAllowed[drillingPredicateUri];
+	if(!this.drillingPredicate){
+	    this.drillingPredicate = CubeViz_HierarchyConfig.defaultPredicate;
 	}
-	this.drillingPredicate = drillingPredicate;
 	this.topNodes = {};
 	this.clear();
     };
@@ -27,17 +29,30 @@ class DataCube_Hierarchy
 	this.hierarchyBottomUp = {};
     }; 
 
+    public getDrillingPredicateUri() : string {
+	return this.drillingPredicate.uri;
+    };
+
    /**
     * loads the hierarchy information contained in the list of elements in the hierarchy elements. Requires elements to be a map: uri -> element
     * Loads the roots of the hierarchy into the hierarchy roots
     */
     public load(elements:any, name:string) : void {
+	if(this.drillingPredicate.inverted){
+	    this.loadInverted(elements,name);
+	    return;
+	}
 	var self:any = this;
 	var roots = [];
         _.each(elements, function(element){
-	    var parent = (element.self || element)[self.drillingPredicate];
+	    var parent = (element.self || element)[self.getDrillingPredicateUri()];
 	    var elementUri = (element.self || element).__cv_uri;
 	    if(parent && typeof parent == "string"){
+		
+		if(!elements[parent]){
+		    return;
+		}
+		
 		self.hierarchyBottomUp[elementUri]=elements[parent];
 		if(!self.hierarchyTopDown[parent]){
 		    self.hierarchyTopDown[parent] = {};
@@ -47,6 +62,10 @@ class DataCube_Hierarchy
 	    }else if(parent){
 		for(var prop in parent){
 		    var singleParent = parent[prop];
+		    if(!elements[singleParent]){
+			continue;
+		    }
+
 		    self.hierarchyBottomUp[elementUri]=elements[singleParent];
 		    if(!self.hierarchyTopDown[singleParent]){
 			self.hierarchyTopDown[singleParent] = {};
@@ -54,6 +73,64 @@ class DataCube_Hierarchy
 		    self.hierarchyTopDown[singleParent][elementUri] = element;
 		}
 	    }else{
+
+	    }
+	});
+
+	_.each(elements, function(element){
+	    var elementUri = (element.self || element).__cv_uri;
+	    if(!self.hierarchyBottomUp[elementUri]){
+		roots.push(element);
+	    }
+	});
+
+
+	this.topNodes[name] = roots;
+    };
+
+   /**
+    * loads the hierarchy information contained in the list of elements in the hierarchy elements. Requires elements to be a map: uri -> element
+    * Loads the roots of the hierarchy into the hierarchy roots
+    * assumes the drilling predicate is an inverted one
+    */
+    public loadInverted(elements:any, name:string) : void {
+	var self:any = this;
+	var roots = [];
+        _.each(elements, function(element){
+	    var child = (element.self || element)[self.getDrillingPredicateUri()];
+	    var elementUri = (element.self || element).__cv_uri;
+	    if(child && typeof child == "string"){
+		self.hierarchyBottomUp[child]=element;
+		if(!elements[child]){
+		    //parent not in selection
+		    return;
+		}
+		if(!self.hierarchyTopDown[elementUri]){
+		    self.hierarchyTopDown[elementUri] = {};
+		}
+		// want to have a set of elements, not a list with duplicates. This is the easiest way to check that
+		self.hierarchyTopDown[elementUri][child] = elements[child];
+	    }else if(child){
+		for(var prop in child){
+		    var singleChild = child[prop];
+		    self.hierarchyBottomUp[singleChild]=element;
+		    if(!elements[singleChild]){
+			// parent not in selection
+			continue;
+		    }
+		    if(!self.hierarchyTopDown[elementUri]){
+			self.hierarchyTopDown[elementUri] = {};
+		    }
+		    self.hierarchyTopDown[elementUri][singleChild] = elements[singleChild];
+		}
+	    }else{
+		//void
+	    }
+	});
+
+	_.each(elements, function(element){
+	    var elementUri = (element.self || element).__cv_uri;
+	    if(!self.hierarchyBottomUp[elementUri]){
 		roots.push(element);
 	    }
 	});
@@ -124,6 +201,9 @@ class DataCube_Hierarchy
 
     //* returns a string holding a label for the element that expresses the hierarchy
     public stringElementLabel(element:any) :string {
+	if(!this.containsElement(element)){
+	    return null;
+	}
 	var s = (element.self || element).__cv_niceLabel;
 	var current = element;
 	var parent;

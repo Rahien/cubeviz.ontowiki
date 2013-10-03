@@ -167,7 +167,8 @@ class View_IndexAction_Visualization extends CubeViz_View_Abstract
         var chart:any = null,
             fromChartConfig:any = CubeViz_Visualization_Controller.getFromChartConfigByClass (
                 this.app._.ui.visualization.className,
-                this.app._.backend.chartConfig[this.app._.data.numberOfMultipleDimensions].charts
+                this.app._.backend.chartConfig[this.app._.data.numberOfMultipleDimensions].charts,
+		this.app._.data
             ),
             libraryInstance:any = null,
             selectedMeasure:any = this.app._.data.selectedComponents.measure,

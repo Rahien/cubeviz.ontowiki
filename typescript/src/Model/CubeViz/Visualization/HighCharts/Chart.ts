@@ -489,4 +489,10 @@ class CubeViz_Visualization_HighCharts_Chart
     public onDestroy(){
 	//void
     };
+
+    //* abstract static function that allows to change the configuration based on the current data, note: not actually inherited. here for documentation purposes. Function is optional.
+    static updateConfigByData(config:any, data:any):any{
+	//void
+	return config;
+    };
 }

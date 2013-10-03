@@ -1,5 +1,4 @@
 /// <reference path="..\..\..\..\declaration\libraries\CryptoJs.d.ts" />
-
 /**
  * Provides helper functions
  */
@@ -32,9 +31,10 @@ class CubeViz_Visualization_Controller
      * Returns chart config object by given class name.
      * @param className Name of the class(chart)
      * @param charts List of chart objects (must have class property)
+     * @param data the data that is currently available (to allow change of default config based on data)
      * @return any|null Chart object if found, null otherwise.
      */
-    static getFromChartConfigByClass(className:string, charts:any[]) : any 
+    static getFromChartConfigByClass(className:string, charts:any[],data:any) : any 
     {
         var result = null;
         
@@ -42,10 +42,13 @@ class CubeViz_Visualization_Controller
             if(true === _.isNull(result)){
                 if(className == chart.className) {
                     result = chart;
+		    var chartClass = eval(className);
+		    if(chartClass.updateConfigByData){
+			result=chartClass.updateConfigByData(result, data);
+		    }
                 }
             }
         });
-        
         return result;
     }    
     

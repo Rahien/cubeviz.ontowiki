@@ -179,10 +179,11 @@ class View_IndexAction_VisualizationSelector extends CubeViz_View_Abstract
     {        
         // get chart config
         var fromChartConfig:any = CubeViz_Visualization_Controller.getFromChartConfigByClass (
-                this.app._.ui.visualization.className,
-                this.app._.backend.chartConfig[this.app._.data.numberOfMultipleDimensions].charts
-            ),
-            self = this;
+            this.app._.ui.visualization.className,
+            this.app._.backend.chartConfig[this.app._.data.numberOfMultipleDimensions].charts,
+	    this.app._.data
+        ),
+        self = this;
             
         // update visualization setting class entry, based on what the user selected
         // before in the menu
@@ -325,7 +326,8 @@ class View_IndexAction_VisualizationSelector extends CubeViz_View_Abstract
             // get chart config
             fromChartConfig:any = CubeViz_Visualization_Controller.getFromChartConfigByClass (
                 this.app._.ui.visualization.className,
-                this.app._.backend.chartConfig[this.app._.data.numberOfMultipleDimensions].charts
+                this.app._.backend.chartConfig[this.app._.data.numberOfMultipleDimensions].charts,
+		this.app._.data
             ),
             
             menuItem:any,
@@ -447,7 +449,7 @@ class View_IndexAction_VisualizationSelector extends CubeViz_View_Abstract
         
             // get chart config
             fromChartConfig:any = CubeViz_Visualization_Controller.getFromChartConfigByClass (
-                this.app._.ui.visualization.className, charts
+                this.app._.ui.visualization.className, charts, this.app._.data
             );
             
         // show dongle if menu options are available

@@ -68,8 +68,8 @@ class CubeViz_Visualization_HighCharts_Hierarchic extends CubeViz_Visualization_
             selectedAttributeUri:selectedAttributeUri
 	};
 
-	this.hierarchyX = new DataCube_Hierarchy ();
-	this.hierarchyY = new DataCube_Hierarchy ();
+	this.hierarchyX = new DataCube_Hierarchy (chartConfig.hierarchyPredicate);
+	this.hierarchyY = new DataCube_Hierarchy (chartConfig.hierarchyPredicate);
 	this.bottomOnly = false;
 	this.drillType = "both";
 
@@ -338,7 +338,7 @@ class CubeViz_Visualization_HighCharts_Hierarchic extends CubeViz_Visualization_
 
     //* fetches the correct label for the given component element. Uses html to represent the label!
     public fetchLabel(element:any) : string {
-	return this.hierarchyX.htmlElementLabel(element) || this.hierarchyY.htmlElementLabel(element);
+	return this.hierarchyX.htmlElementLabel(element) || this.hierarchyY.htmlElementLabel(element) || "<div>"+(element.self || element).__cv_niceLabel+"</div>";
     };
 
     public handleTwoDimensions(observation:any, forXAxis:any, selectedComponentDimensions:any, forSeries:any, selectedAttributeUri:any, selectedMeasureUri:any) : void {
@@ -635,5 +635,64 @@ class CubeViz_Visualization_HighCharts_Hierarchic extends CubeViz_Visualization_
 	    levels--;
 	}
 	return element;
+    }
+
+    //* abstract static function that allows to change the configuration based on the current data, note: not actually inherited. here for documentation purposes. Function is optional.
+    static updateConfigByData(config:any, data:any):any{
+	var hierClass = CubeViz_Visualization_HighCharts_Hierarchic;
+	var configClone = hierClass.deepClone(config)
+	var observationPredicates = hierClass.getAllDimensionValuePredicates(data);
+	
+	// remove options not present in data
+	for( var i=0, option; option=configClone.options[i]; i++){
+	    if(option.key == "hierarchyPredicate"){
+		for(var j=0, value; value=option.values[j]; j++){
+		    if(!observationPredicates[value.value]){
+			configClone.options[i].values.splice(j,1);
+			j--;
+		    }
+		}
+	    }
+	}
+	//void
+	return configClone;
+    }
+
+    //* returns a set of all predicates in any dimension value. Assumes something to be a predicate if it does not start with _
+    static getAllDimensionValuePredicates(data:any): any{
+	var map:any= {};
+	for(var dim in data.components.dimensions){
+	    for(var i=0, dimVal; dimVal=data.components.dimensions[dim].__cv_elements[i]; i++){
+		for(var prop in dimVal){
+		    if(prop.indexOf('_') !== 0){
+			map[prop] = true;
+		    }
+		}
+	    }
+	}
+	return map;
+    }
+
+    //* takes deep clone of object
+    static deepClone(data:any) :any{
+	var deepClone = CubeViz_Visualization_HighCharts_Hierarchic.deepClone;
+	if(_.isObject(data)){
+	    var newObject:any;
+	    if(_.isArray(data)){
+		newObject = [];
+		for(var i=0, part; part=data[i]; i++){
+		    newObject.push(deepClone(part));
+		}
+		return newObject;
+	    }else{
+		newObject = {};
+		for(var prop in data){
+		    newObject[prop] = deepClone(data[prop]);
+		}
+		return newObject;
+	    }
+	}else{
+	    return data;
+	}
     }
 }
