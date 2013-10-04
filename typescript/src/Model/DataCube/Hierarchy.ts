@@ -18,6 +18,9 @@ class DataCube_Hierarchy
 	this.drillingPredicate = CubeViz_HierarchyConfig.predicatesAllowed[drillingPredicateUri];
 	if(!this.drillingPredicate){
 	    this.drillingPredicate = CubeViz_HierarchyConfig.defaultPredicate;
+	}else{
+	    // remember last choice and trigger change event to be handled in data configuration dialog
+	    CubeViz_HierarchyConfig.defaultPredicate = this.drillingPredicate;
 	}
 	this.topNodes = {};
 	this.clear();
@@ -249,4 +252,37 @@ class DataCube_Hierarchy
 	}
 	return descendants;
     }
+
+    //* returns a set of all predicates in any dimension value. Assumes something to be a predicate if it does not start with _
+    static getAllDimensionValuePredicates(data:any): any{
+	var map:any= {};
+	for(var dim in data.components.dimensions){
+	    for(var i=0, dimVal; dimVal=data.components.dimensions[dim].__cv_elements[i]; i++){
+		for(var prop in dimVal){
+		    if(prop.indexOf('_') !== 0){
+			map[prop] = true;
+		    }
+		}
+	    }
+	}
+	return map;
+    }
+
+    //* calculates the default predicate to show for the hierarchy.
+    static calculateDefaultPredicate(data:any) : string {
+	var predicates = DataCube_Hierarchy.getAllDimensionValuePredicates(data);
+
+	if(predicates[CubeViz_HierarchyConfig.defaultPredicate.uri]){
+	    return CubeViz_HierarchyConfig.defaultPredicate.uri;
+	}
+	
+	for(var predicate in predicates){
+	    
+	    if(CubeViz_HierarchyConfig.predicatesAllowed[predicate]){
+		return predicate;
+	    }
+	}
+	return CubeViz_HierarchyConfig.defaultPredicate.uri;
+    }
+
 }

@@ -1479,7 +1479,7 @@ var CubeViz_Visualization_HighCharts_Hierarchic = (function (_super) {
     CubeViz_Visualization_HighCharts_Hierarchic.updateConfigByData = function updateConfigByData(config, data) {
         var hierClass = CubeViz_Visualization_HighCharts_Hierarchic;
         var configClone = hierClass.deepClone(config);
-        var observationPredicates = hierClass.getAllDimensionValuePredicates(data);
+        var observationPredicates = DataCube_Hierarchy.getAllDimensionValuePredicates(data);
         for(var i = 0, option; option = configClone.options[i]; i++) {
             if(option.key == "hierarchyPredicate") {
                 for(var j = 0, value; value = option.values[j]; j++) {
@@ -1491,20 +1491,6 @@ var CubeViz_Visualization_HighCharts_Hierarchic = (function (_super) {
             }
         }
         return configClone;
-    }
-    CubeViz_Visualization_HighCharts_Hierarchic.getAllDimensionValuePredicates = function getAllDimensionValuePredicates(data) {
-        var map = {
-        };
-        for(var dim in data.components.dimensions) {
-            for(var i = 0, dimVal; dimVal = data.components.dimensions[dim].__cv_elements[i]; i++) {
-                for(var prop in dimVal) {
-                    if(prop.indexOf('_') !== 0) {
-                        map[prop] = true;
-                    }
-                }
-            }
-        }
-        return map;
     }
     CubeViz_Visualization_HighCharts_Hierarchic.deepClone = function deepClone(data) {
         var deepClone = CubeViz_Visualization_HighCharts_Hierarchic.deepClone;
@@ -2733,6 +2719,8 @@ var DataCube_Hierarchy = (function () {
         this.drillingPredicate = CubeViz_HierarchyConfig.predicatesAllowed[drillingPredicateUri];
         if(!this.drillingPredicate) {
             this.drillingPredicate = CubeViz_HierarchyConfig.defaultPredicate;
+        } else {
+            CubeViz_HierarchyConfig.defaultPredicate = this.drillingPredicate;
         }
         this.topNodes = {
         };
@@ -2930,6 +2918,32 @@ var DataCube_Hierarchy = (function () {
         }
         return descendants;
     };
+    DataCube_Hierarchy.getAllDimensionValuePredicates = function getAllDimensionValuePredicates(data) {
+        var map = {
+        };
+        for(var dim in data.components.dimensions) {
+            for(var i = 0, dimVal; dimVal = data.components.dimensions[dim].__cv_elements[i]; i++) {
+                for(var prop in dimVal) {
+                    if(prop.indexOf('_') !== 0) {
+                        map[prop] = true;
+                    }
+                }
+            }
+        }
+        return map;
+    }
+    DataCube_Hierarchy.calculateDefaultPredicate = function calculateDefaultPredicate(data) {
+        var predicates = DataCube_Hierarchy.getAllDimensionValuePredicates(data);
+        if(predicates[CubeViz_HierarchyConfig.defaultPredicate.uri]) {
+            return CubeViz_HierarchyConfig.defaultPredicate.uri;
+        }
+        for(var predicate in predicates) {
+            if(CubeViz_HierarchyConfig.predicatesAllowed[predicate]) {
+                return predicate;
+            }
+        }
+        return CubeViz_HierarchyConfig.defaultPredicate.uri;
+    }
     return DataCube_Hierarchy;
 })();
 var View_CompareAction_ModelSelection = (function (_super) {
@@ -4551,7 +4565,7 @@ var View_DataselectionModule_Component = (function (_super) {
         var setElementChecked = null;
         var wasSomethingSelected = false;
 
-        var hierarchy = new DataCube_Hierarchy();
+        var hierarchy = new DataCube_Hierarchy(DataCube_Hierarchy.calculateDefaultPredicate(this.app._.data));
         hierarchy.loadArray(component.__cv_elements, "elements");
         componentElements.addList(component.__cv_elements).sortAscendingBy("__cv_niceLabel").each(function (element) {
             setElementChecked = undefined !== _.find(selectedDimensions, function (dim) {
@@ -4561,7 +4575,7 @@ var View_DataselectionModule_Component = (function (_super) {
                 wasSomethingSelected = true;
             }
             elementInstance = $(CubeViz_View_Helper.tplReplace($("#cubeviz-dataSelectionModule-tpl-dialogCheckboxElement").html(), {
-                __cv_niceLabel: hierarchy.htmlElementLabel(element),
+                __cv_niceLabel: hierarchy.htmlElementLabel(element) || element.__cv_niceLabel,
                 __cv_uri: element.__cv_uri,
                 __cv_uri2: element.__cv_uri
             }));

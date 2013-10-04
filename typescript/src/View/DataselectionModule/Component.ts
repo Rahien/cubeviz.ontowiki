@@ -123,7 +123,7 @@ class View_DataselectionModule_Component extends CubeViz_View_Abstract
             setElementChecked = null,
             wasSomethingSelected:bool = false;
 
-	var hierarchy:any = new DataCube_Hierarchy ();
+	var hierarchy:any = new DataCube_Hierarchy ( DataCube_Hierarchy.calculateDefaultPredicate(this.app._.data));
 	hierarchy.loadArray(component.__cv_elements,"elements");
             
         componentElements
@@ -151,7 +151,7 @@ class View_DataselectionModule_Component extends CubeViz_View_Abstract
                 elementInstance = $(CubeViz_View_Helper.tplReplace(
                     $("#cubeviz-dataSelectionModule-tpl-dialogCheckboxElement").html(),
                     {
-                        __cv_niceLabel: hierarchy.htmlElementLabel(element),
+                        __cv_niceLabel: hierarchy.htmlElementLabel(element) || element.__cv_niceLabel,
                         __cv_uri: element.__cv_uri,
                         __cv_uri2: element.__cv_uri
                     }
@@ -250,7 +250,7 @@ class View_DataselectionModule_Component extends CubeViz_View_Abstract
             }
         );
     }
-    
+
     /**
      *
      */

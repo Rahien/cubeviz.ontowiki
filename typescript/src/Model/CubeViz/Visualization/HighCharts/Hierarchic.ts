@@ -641,7 +641,7 @@ class CubeViz_Visualization_HighCharts_Hierarchic extends CubeViz_Visualization_
     static updateConfigByData(config:any, data:any):any{
 	var hierClass = CubeViz_Visualization_HighCharts_Hierarchic;
 	var configClone = hierClass.deepClone(config)
-	var observationPredicates = hierClass.getAllDimensionValuePredicates(data);
+	var observationPredicates = DataCube_Hierarchy.getAllDimensionValuePredicates(data);
 	
 	// remove options not present in data
 	for( var i=0, option; option=configClone.options[i]; i++){
@@ -656,21 +656,6 @@ class CubeViz_Visualization_HighCharts_Hierarchic extends CubeViz_Visualization_
 	}
 	//void
 	return configClone;
-    }
-
-    //* returns a set of all predicates in any dimension value. Assumes something to be a predicate if it does not start with _
-    static getAllDimensionValuePredicates(data:any): any{
-	var map:any= {};
-	for(var dim in data.components.dimensions){
-	    for(var i=0, dimVal; dimVal=data.components.dimensions[dim].__cv_elements[i]; i++){
-		for(var prop in dimVal){
-		    if(prop.indexOf('_') !== 0){
-			map[prop] = true;
-		    }
-		}
-	    }
-	}
-	return map;
     }
 
     //* takes deep clone of object
